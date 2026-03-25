@@ -9,6 +9,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      - /app/.next
     env_file:
       - .env.local
     profiles:
@@ -23,5 +24,12 @@ services:
       - "3000:3000"
     env_file:
       - .env.local
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     profiles:
       - prod
