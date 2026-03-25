@@ -161,6 +161,20 @@ None — no UI components rendering data yet. Schema is code-complete; DB push i
 - Plan 01-03 (lesson UI) can proceed once auth is working
 - Plan 01-04 (content seed) can proceed once schema is in DB
 
+## Self-Check: PASSED
+
+- FOUND: src/lib/db/index.ts
+- FOUND: src/lib/db/schema.ts
+- FOUND: src/lib/db/question-schemas.ts
+- FOUND: drizzle.config.ts
+- FOUND: vitest.config.ts
+- FOUND: .env.example
+- FOUND: .nvmrc
+- FOUND: src/components/ui/card.tsx
+- FOUND: src/components/ui/tabs.tsx
+- FOUND: src/components/ui/skeleton.tsx
+- FOUND commit: 1fb91c8
+
 ---
 *Phase: 01-foundation*
 *Completed: 2026-03-25*
