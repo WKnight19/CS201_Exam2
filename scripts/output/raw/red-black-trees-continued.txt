@@ -1,0 +1,433 @@
+CS 201
+Red Black
+Trees
+
+-- 1 of 23 --
+
+Properties of a Red-Black Tree
+1. Every node is either red or black.
+2. The root is black.
+3. Every leaf (T.nil) is black.
+4. If a node is red, then both its children are black.
+5. For each node, all simple paths from the node to descendant
+leaves contain the same number of black nodes.
+
+-- 2 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+
+-- 3 of 23 --
+
+x
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+
+-- 4 of 23 --
+
+x
+36 < 26
+y
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+
+-- 5 of 23 --
+
+x	y
+36 < 41
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+
+-- 6 of 23 --
+
+x	y
+36 < 30
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+
+-- 7 of 23 --
+
+x	y
+36 < 38
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+
+-- 8 of 23 --
+
+x	y
+36 < 35
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+
+-- 9 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+36
+y
+> y.right (35)	z.key =
+x = T.nil
+
+-- 10 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+36
+Coloring z as red would break rule #4 of the red-black
+properties (if a node is red, both of its children must
+be black) if RB-INSERT-FIXUP(T, z) is not called.
+
+-- 11 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+36
+
+-- 12 of 23 --
+
+y
+z
+y = z’s uncle, and y is red, so case 1 applies.
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+36
+
+-- 13 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+36
+z
+y = z’s uncle, and y is red, so case 1 applies.
+y
+
+-- 14 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+36
+y
+z
+y = z’s uncle, but y is now black. z is z’s
+parent’s right child. Case 2 applies.
+
+-- 15 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+36
+yz
+y = z’s uncle, but y is now black. z is z’s
+parent’s right child. Case 2 applies.
+
+-- 16 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+36
+y
+z = x
+Call LEFT-ROTATE(T, z). z replaces x in
+the pseudocode.
+
+-- 17 of 23 --
+
+36
+y = 38;
+x.right = y.left = 35;
+y.left ≠ T.nil, y.left.p = 38;
+y.p = x.p = 41;
+x == x.p.left, x.p.left = y = 38;
+y.left = x = 30;
+x.p = y = 38;
+14
+23
+26
+41	17
+21
+30
+19
+47
+10
+38
+28
+7
+3
+35
+39
+12 20
+16
+15
+36
+
+-- 18 of 23 --
+
+14
+23
+26
+41	17
+21
+30
+19
+47
+10
+38
+28
+7
+3
+35
+39
+12 20
+16
+15
+36
+Immediately case 3 applies. Change colors
+of z’s parent and z’s grandparent…
+z
+
+-- 19 of 23 --
+
+14
+23
+26
+41	17
+21
+30
+19
+47
+10
+38
+28
+7
+3
+35
+39
+12 20
+16
+15
+36
+…and call RIGHT-ROTATE(T,z.p.p).
+z
+z.p.p = y
+z.p= x
+
+-- 20 of 23 --
+
+14
+23
+26
+41
+17
+21
+30
+19 47	10
+38
+28
+7
+3
+35 39
+12 20
+16
+15 36
+x = y.left = 38;
+y.left = x.right = 39;
+x.right ≠ T.nil, x.right.p = y = 38;
+x.p = y.p = 26;
+y == y.p.right, y.p.right = x = 38;
+x.right = y = 41;
+y.p = x = 38;
+
+-- 21 of 23 --
+
+14
+23
+26
+41	17
+21 30
+19
+47
+10 38	28
+7
+3
+35 39	12 20
+16
+15
+TREE_INSERT does not assign z with a color. Coloring 36
+either red or black violates the Red-Black properties.
+Red breaks rule #4 (If a node is red, both of its children must
+be black.).
+Black breaks rule #5 (For each node, all paths from the node
+to its descendant leaves must have the same black-height.).
+36
+
+-- 22 of 23 --
+
+Questions
+
+-- 23 of 23 --
+

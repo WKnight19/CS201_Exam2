@@ -1,0 +1,406 @@
+
+
+-- 1 of 47 --
+
+Huffman Codes
+
+-- 2 of 47 --
+
+Greedy Huffman Algorithm
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 3
+
+-- 3 of 47 --
+
+Greedy Huffman Algorithm
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 4
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 1100 100 101 00000
+
+-- 4 of 47 --
+
+Encode
+• To encode a message, replace each character A[k] by its
+corresponding binary code C[k]
+• Example
+➢abigchefahead
+➢111000011011100110110001000111110001111001
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 1100 100 101 00000
+Jiacheng Li, Ph.D. 5
+
+-- 5 of 47 --
+
+Decode
+• Example
+➢111000011011100110110001000111110001111001
+➢abigchefahead
+Jiacheng Li, Ph.D. 6
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+
+-- 6 of 47 --
+
+Non-Binary Trees & Traversals
+
+-- 7 of 47 --
+
+Traversals
+• Pre-order
+• Post-order
+• Level-order
+Jiacheng Li, Ph.D. 8
+
+-- 8 of 47 --
+
+Preorder Traversal
+void preorder(Node p) {
+if (p == null) return;
+visit(p);
+preorder(p.leftmostChild);
+preorder(p.rightSibling);
+}
+Prefix: A B E C D F G H J
+A
+B
+E
+D	C
+G	F J	H
+Jiacheng Li, Ph.D. 9
+
+-- 9 of 47 --
+
+Postorder Traversal
+void postorder(Node p) {
+if (p == null) return;
+postorder(p.leftmostChild);
+visit(p);
+postorder(p.rightSibling);
+}
+Postfix: E B C F G H J D A
+A
+B
+E
+D	C
+G	F J	H
+Jiacheng Li, Ph.D. 10
+
+-- 10 of 47 --
+
+Level-order Traversal
+void levelOrder(Tree T) {
+Queue Q();
+Q.enqueue(T.root);
+while (not Q.isEmpty()) {
+Node p = Q.dequeue();
+visit(p);
+for (Node c = p.leftmostChild; c != null; c = c.rightSibling)
+Q.enqueue(c);
+}
+}
+A
+B
+E
+D	C
+G	F J	H
+Level-order: A B C D E F G H J
+Jiacheng Li, Ph.D. 11
+
+-- 11 of 47 --
+
+Red-Black Trees
+(Insertion)
+
+-- 12 of 47 --
+
+Properties of red-black trees
+A red-black tree is a binary search tree that satisfies
+the following Red-black properties:
+1. Every node is either red or black.
+2. The root is black.
+3. Every leaf (NIL) is black.
+4. If a node is red, then both its children are black.
+5. For each node, all simple paths from the node to
+descendant leaves contain the same number of black
+nodes
+Proposition: The height of a red-black tree with n
+internal nodes is ≤ 2 * lg(n+1) = O(lg n)
+
+-- 13 of 47 --
+
+Rotations
+
+-- 14 of 47 --
+
+Insertion
+
+-- 15 of 47 --
+
+Insertion
+
+-- 16 of 47 --
+
+Insertion
+
+-- 17 of 47 --
+
+Insertion
+
+-- 18 of 47 --
+
+Insertion We perform a left rotation.
+
+-- 19 of 47 --
+
+Insertion We perform a right rotation.
+
+-- 20 of 47 --
+
+Red-Black Trees
+(Deletion)
+
+-- 21 of 47 --
+
+Red-Black Trees - Deletion
+
+-- 22 of 47 --
+
+
+
+-- 23 of 47 --
+
+Deletion
+13
+25	15
+17
+1 11
+8
+6 22 27
+Key: 8
+
+-- 24 of 47 --
+
+Deletion
+7
+22	10
+18	3
+11 26
+Key: 3
+8
+
+-- 25 of 47 --
+
+Deletion
+13
+25	15
+17
+1 11
+8
+6 22 27
+Key: 11
+
+-- 26 of 47 --
+
+B-Trees
+(Insertion & Search)
+
+-- 27 of 47 --
+
+A simple B-tree
+Figure: A B-tree whose keys are the consonants of English.
+
+-- 28 of 47 --
+
+Five Structural Properties
+
+-- 29 of 47 --
+
+Five Structural Properties
+
+-- 30 of 47 --
+
+Five Structural Properties
+
+-- 31 of 47 --
+
+Five Structural Properties
+
+-- 32 of 47 --
+
+Five Structural Properties
+
+-- 33 of 47 --
+
+Search
+
+-- 34 of 47 --
+
+Inserting Operation
+
+-- 35 of 47 --
+
+Insertion Operation
+
+-- 36 of 47 --
+
+Insertion Operation
+
+-- 37 of 47 --
+
+Insertion Operation
+
+-- 38 of 47 --
+
+Insertion Operation
+
+-- 39 of 47 --
+
+Insertion Operation
+
+-- 40 of 47 --
+
+B-Trees
+(Deletion)
+
+-- 41 of 47 --
+
+Deletion
+
+-- 42 of 47 --
+
+Case 2
+
+-- 43 of 47 --
+
+Case 3
+
+-- 44 of 47 --
+
+Deletion - Practices
+
+-- 45 of 47 --
+
+Deletion - Practices
+
+-- 46 of 47 --
+
+Questions?
+
+-- 47 of 47 --
+

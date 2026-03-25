@@ -1,0 +1,933 @@
+Jiacheng Li, Ph.D. 1
+
+-- 1 of 57 --
+
+Binary Trees
+And their Applications with Stacks
+CS 201: Data Structures and Algorithms
+Jiacheng Li, Ph.D.
+Jiacheng Li, Ph.D. 2
+
+-- 2 of 57 --
+
+Binary Tree
+• A binary tree is a type of data structure used in computer
+science to organize and store data in a hierarchical way.
+Jiacheng Li, Ph.D. 3
+
+-- 3 of 57 --
+
+Binary Tree Programmatically
+class Node {
+ElementType data;
+Node *parent, *leftChild, *rightChild;
+}
+Class BinaryTree {
+Node *root;
+}
+Jiacheng Li, Ph.D. 4
+
+-- 4 of 57 --
+
+Binary Tree Visually
+A
+B
+D E F G
+C
+H J
+null	A
+root
+B C
+parent
+rightC
+data
+D
+null	null
+E
+null
+F
+null
+G
+null	null
+H
+null	null
+J
+null	nullleftC
+Node:
+Jiacheng Li, Ph.D. 5
+
+-- 5 of 57 --
+
+Applications
+• Arithmetic Expression Trees
+o Example: (A+3)/(B-4) + 5*(C-D)
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Jiacheng Li, Ph.D. 6
+
+-- 6 of 57 --
+
+Applications (cont.)
+• Binary Search Trees
+o (More about these later in the course)
+o If node X is in left subtree of node Y,
+▪ then X.data ≤ Y.data
+o If node Z is in right subtree of node Y,
+▪ then Z.data  Y.data 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68
+Jiacheng Li, Ph.D. 7
+
+-- 7 of 57 --
+
+Binary Tree Traversals
+Depth-First:
+oPreorder
+oInorder
+oPostorder
+Breadth-First:
+oLevel-order
+Jiacheng Li, Ph.D. 8
+
+-- 8 of 57 --
+
+Binary Tree Traversals
+Depth-First:
+oPreorder
+oInorder
+oPostorder
+Breadth-First:
+oLevel-order
+Jiacheng Li, Ph.D. 9
+
+-- 9 of 57 --
+
+Preorder Traversal (CLR)
+void preorder(BinaryTree T) {
+preorder(T->root); // A wrapper function
+}
+void preorder(Node *p) {
+if (p == nullptr) return;
+visit(p); // Example: print(p->data); // Current
+preorder(p->leftChild); // Left
+preorder(p->rightChild); // Right
+}
+Jiacheng Li, Ph.D. 10
+
+-- 10 of 57 --
+
+Preorder Traversal
+void preorder(Node *p) {
+if (p == nullptr) return;
+visit(p); // Example: print(p->data);
+preorder(p->leftChild);
+preorder(p->rightChild);
+}
+A
+B
+D E F G
+C
+H J
+Prefix Notation: A B D E H C F J G
+Jiacheng Li, Ph.D. 11
+
+-- 11 of 57 --
+
+Preorder Traversal
+void preorder(Node *p) {
+if (p == nullptr) return;
+visit(p); // Example: print(p->data);
+preorder(p->leftChild);
+preorder(p->rightChild);
+}
+A
+B
+D E F G
+C
+H J
+Prefix Notation: A B D E H C F J G
+Jiacheng Li, Ph.D. 12
+
+-- 12 of 57 --
+
+Preorder Traversal
+void preorder(Node *p) {
+if (p == nullptr) return;
+visit(p); // Example: print(p->data);
+preorder(p->leftChild);
+preorder(p->rightChild);
+}
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Prefix: try it
+Jiacheng Li, Ph.D. 13
+
+-- 13 of 57 --
+
+Preorder Traversal
+void preorder(Node *p) {
+if (p == nullptr) return;
+visit(p); // Example: print(p->data);
+preorder(p->leftChild);
+preorder(p->rightChild);
+}
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Prefix: + / + A 3 – B 4 * 5 – C D
+Jiacheng Li, Ph.D. 14
+
+-- 14 of 57 --
+
+Binary Tree Traversals
+Depth-First:
+oPreorder
+oPostorder
+oInorder
+Breadth-First:
+oLevel-order
+Jiacheng Li, Ph.D. 15
+
+-- 15 of 57 --
+
+Postorder Traversal (LRC)
+void postorder(BinaryTree T) {
+postorder(T->root);
+}
+void postorder(Node *p) {
+if (p == nullptr) return;
+postorder(p->leftChild); // Left
+postorder(p->rightChild); // Right
+visit(p); // Current
+}
+Jiacheng Li, Ph.D. 16
+
+-- 16 of 57 --
+
+Postorder Traversal
+void postorder(Node *p) {
+if (p == nullptr) return;
+postorder(p->leftChild);
+postorder(p->rightChild);
+visit(p);
+}
+A
+B
+D E F G
+C
+H J
+Postfix Notation: D H E B J F G C A
+Jiacheng Li, Ph.D. 17
+
+-- 17 of 57 --
+
+Postorder Traversal
+void postorder(Node *p) {
+if (p == nullptr) return;
+postorder(p->leftChild);
+postorder(p->rightChild);
+visit(p);
+}
+A
+B
+D E F G
+C
+H J
+Postfix Notation: D H E B J F G C A
+Jiacheng Li, Ph.D. 18
+
+-- 18 of 57 --
+
+Postorder Traversal
+void postorder(Node *p) {
+if (p == nullptr) return;
+postorder(p->leftChild);
+postorder(p->rightChild);
+visit(p);
+}
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Postfix: try it Jiacheng Li, Ph.D. 19
+
+-- 19 of 57 --
+
+Postorder Traversal
+void postorder(Node *p) {
+if (p == nullptr) return;
+postorder(p->leftChild);
+postorder(p->rightChild);
+visit(p);
+}
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Postfix: A 3 + B 4 – / 5 C D – * + Jiacheng Li, Ph.D. 20
+
+-- 20 of 57 --
+
+Binary Tree Traversals
+Depth-First:
+oPreorder
+oPostorder
+oInorder
+Breadth-First:
+oLevel-order
+Jiacheng Li, Ph.D. 21
+
+-- 21 of 57 --
+
+Inorder Traversal (LCR)
+void inorder(BinaryTree T) {
+inorder(T->root);
+}
+void inorder(Node *p) {
+if (p == nullptr) return;
+inorder(p->leftChild); // Left
+visit(p); // Current
+inorder(p->rightChild); // Right
+}
+Jiacheng Li, Ph.D. 22
+
+-- 22 of 57 --
+
+Inorder Traversal
+void inorder(Node *p) {
+if (p == nullptr) return;
+inorder(p->leftChild);
+visit(p);
+inorder(p->rightChild);
+}
+A
+B
+D E F G
+C
+H J
+Infix Notation: D B H E A F J C G
+Jiacheng Li, Ph.D. 23
+
+-- 23 of 57 --
+
+Inorder Traversal
+void inorder(Node *p) {
+if (p == nullptr) return;
+inorder(p->leftChild);
+visit(p);
+inorder(p->rightChild);
+}
+A
+B
+D E F G
+C
+H J
+Infix Notation: D B H E A F J C G
+Jiacheng Li, Ph.D. 24
+
+-- 24 of 57 --
+
+Inorder Traversal
+void inorder(Node *p) {
+if (p == nullptr) return;
+inorder(p->leftChild);
+visit(p);
+inorder(p->rightChild);
+}
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Infix: try it
+Jiacheng Li, Ph.D. 25
+
+-- 25 of 57 --
+
+Inorder Traversal
+void inorder(Node *p) {
+if (p == nullptr) return;
+inorder(p->leftChild);
+visit(p);
+inorder(p->rightChild);
+}
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Infix: A + 3 / B – 4 + 5 * C – D
+Parenthesized infix: ((A + 3)/(B – 4)) + (5 * (C – D))
+Jiacheng Li, Ph.D. 26
+
+-- 26 of 57 --
+
+Binary Tree Traversals
+Breadth-First:
+oLevel-order
+Jiacheng Li, Ph.D. 27
+
+-- 27 of 57 --
+
+Level-order Traversal
+void levelOrder(BinaryTree T) {
+Queue Q(); // FIFO
+Q.enqueue(T.root);
+while (not Q.isEmpty()) {
+Node *p = Q.dequeue();
+visit(p);
+if (p->leftChild != null)
+Q.enqueue(p->leftChild);
+if (p->rightChild != null)
+Q.enqueue(p->rightChild);
+}
+} Jiacheng Li, Ph.D. 28
+
+-- 28 of 57 --
+
+Level-order Traversal
+Q.enqueue(T.root);
+while (not Q.isEmpty()) {
+Node *p = Q.dequeue();
+visit(p);
+if (p->leftChild != null) Q.enqueue(p->leftChild);
+if (p->rightChild != null) Q.enqueue(p->rightChild);
+}
+A
+B
+D E F G
+C
+H J
+Level-order: A B C D E F G H J
+Queue
+A
+B
+C
+D
+E
+F
+G
+H
+J
+Jiacheng Li, Ph.D. 29
+
+-- 29 of 57 --
+
+Level-order Traversal
+Q.enqueue(T.root);
+while (not Q.isEmpty()) {
+Node *p = Q.dequeue();
+visit(p);
+if (p->leftChild != null) Q.enqueue(p->leftChild);
+if (p->rightChild != null) Q.enqueue(p->rightChild);
+}
+A
+B
+D E F G
+C
+H J
+Level-order: A B C D E F G H J
+Jiacheng Li, Ph.D. 30
+
+-- 30 of 57 --
+
+Level-order Traversal
+Q.enqueue(T.root);
+while (not Q.isEmpty()) {
+Node *p = Q.dequeue();
+visit(p);
+if (p->leftChild != null) Q.enqueue(p->leftChild);
+if (p->rightChild != null) Q.enqueue(p->rightChild);
+}
+Level-order: try it
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Jiacheng Li, Ph.D. 31
+
+-- 31 of 57 --
+
+Level-order Traversal
+Q.enqueue(T.root);
+while (not Q.isEmpty()) {
+Node *p = Q.dequeue();
+visit(p);
+if (p->leftChild != null) Q.enqueue(p->leftChild);
+if (p->rightChild != null) Q.enqueue(p->rightChild);
+}
+Level-order: + / * + – 5 – A 3 B 4 C D
++
+/
++ – 5 –
+*
+B C	A 4	3 D
+Jiacheng Li, Ph.D. 32
+
+-- 32 of 57 --
+
+Analysis
+• Let n = number of nodes in the tree.
+• Each traversal spends (1) time at each node,
+so each traversal has (n) total running time.
+Jiacheng Li, Ph.D. 33
+
+-- 33 of 57 --
+
+A Postfix Expression
+Postfix Expression:
+An expression is called the postfix expression if the operator appears in the
+expression after the operands.
+Example:
+infix: A+B * (C-D) = AB+CD-*
+Jiacheng Li, Ph.D. 34
+
+-- 34 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = ?
+Stack:
+Jiacheng Li, Ph.D. 35
+
+-- 35 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = 3
+Stack:
+Jiacheng Li, Ph.D. 36
+
+-- 36 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = 3
+Stack: 3
+Jiacheng Li, Ph.D. 37
+
+-- 37 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = 4
+Stack: 3
+Jiacheng Li, Ph.D. 38
+
+-- 38 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = 4
+Stack: 3 4
+Jiacheng Li, Ph.D. 39
+
+-- 39 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = +
+Stack: 3 4
+Jiacheng Li, Ph.D. 40
+
+-- 40 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = +
+Stack: 7
+Jiacheng Li, Ph.D. 41
+
+-- 41 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = 9
+Stack: 7
+Jiacheng Li, Ph.D. 42
+
+-- 42 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = 9
+Stack: 7 9
+Jiacheng Li, Ph.D. 43
+
+-- 43 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = 1
+Stack: 7 9
+Jiacheng Li, Ph.D. 44
+
+-- 44 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = 1
+Stack: 7 9 1
+Jiacheng Li, Ph.D. 45
+
+-- 45 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = –
+Stack: 7 9 1
+Jiacheng Li, Ph.D. 46
+
+-- 46 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = –
+Stack: 7 8
+Jiacheng Li, Ph.D. 47
+
+-- 47 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = *
+Stack: 7 8
+Jiacheng Li, Ph.D. 48
+
+-- 48 of 57 --
+
+Evaluating a Postfix Expression
+evaluatePostfix() { // can use stack or recursion
+Stack S();
+while (op = read()) {
+if (op is operand)
+S.push(op);
+else if (op is operator) {
+right = S.pop();
+left = S.pop();
+S.push(apply(op, left, right));
+}
+}
+return S.pop();
+}
+Example: 3 4 + 9 1 – *
+op = *
+Stack: 56
+Jiacheng Li, Ph.D. 49
+
+-- 49 of 57 --
+
+A Prefix Expression
+Prefix Expression:
+An expression is called the prefix expression if the operator appears in the
+expression before the operands.
+Example:
+infix: (A+B) * (C-D) = *+AB-CD
+Jiacheng Li, Ph.D. 50
+
+-- 50 of 57 --
+
+Evaluating a Prefix Expression
+evaluatePrefix() { // can use stack or recursion
+op = read();
+if (op is operand)
+return op;
+else if (op is operator) {
+left = evaluatePrefix();
+right = evaluatePrefix();
+return apply(op, left, right);
+}
+}
+Example: * + 3 4 – 9 1
+op = ?
+Action: ?
+Jiacheng Li, Ph.D. 51
+
+-- 51 of 57 --
+
+Evaluating a Prefix Expression
+evaluatePrefix() { // can use stack or recursion
+op = read();
+if (op is operand)
+return op;
+else if (op is operator) {
+left = evaluatePrefix();
+right = evaluatePrefix();
+return apply(op, left, right);
+}
+}
+Example: * + 3 4 – 9 1
+op = *
+Action: ?
+Jiacheng Li, Ph.D. 52
+
+-- 52 of 57 --
+
+Evaluating a Prefix Expression
+evaluatePrefix() { // can use stack or recursion
+op = read();
+if (op is operand)
+return op;
+else if (op is operator) {
+left = evaluatePrefix();
+right = evaluatePrefix();
+return apply(op, left, right);
+}
+}
+Example: * + 3 4 – 9 1
+op = *
+Action:
+Recursively read and evaluate + 3 4  left = 7
+Jiacheng Li, Ph.D. 53
+
+-- 53 of 57 --
+
+Evaluating a Prefix Expression
+evaluatePrefix() { // can use stack or recursion
+op = read();
+if (op is operand)
+return op;
+else if (op is operator) {
+left = evaluatePrefix();
+right = evaluatePrefix();
+return apply(op, left, right);
+}
+}
+Example: * + 3 4 – 9 1
+op = *
+Action:
+Recursively read and evaluate + 3 4  left = 7
+Recursively read and evaluate – 9 1  right = 8
+Jiacheng Li, Ph.D. 54
+
+-- 54 of 57 --
+
+Evaluating a Prefix Expression
+evaluatePrefix() { // can use stack or recursion
+op = read();
+if (op is operand)
+return op;
+else if (op is operator) {
+left = evaluatePrefix();
+right = evaluatePrefix();
+return apply(op, left, right);
+}
+}
+Example: * + 3 4 – 9 1
+op = *
+Action:
+Recursively read and evaluate + 3 4  left = 7
+Recursively read and evaluate – 9 1  right = 8
+apply(*, 7, 8)  return 56
+Jiacheng Li, Ph.D. 55
+
+-- 55 of 57 --
+
+Evaluating
+a Prefix
+Expression
+Jiacheng Li, Ph.D. 56
+
+-- 56 of 57 --
+
+Questions?
+Jiacheng Li, Ph.D. 57
+
+-- 57 of 57 --
+

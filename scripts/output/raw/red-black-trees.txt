@@ -1,0 +1,543 @@
+Jiacheng Li, Ph.D.
+1
+
+-- 1 of 58 --
+
+Red-Black Trees
+CS 201: Data Structures and Algorithms
+Jiacheng Li, Ph.D.
+Jiacheng Li, Ph.D.
+2
+
+-- 2 of 58 --
+
+A Balanced Tree
+• A balanced tree in computer science refers to a type of
+binary tree structure that maintains its height to be as low as
+possible while elements are added or removed, ensuring that
+operations like search, insert, and delete can be performed
+efficiently.
+• The primary goal of a balanced tree is to maintain its height
+around 𝑂 log 𝑛 , where 𝑛 is the number of nodes.
+Jiacheng Li, Ph.D.
+3
+
+-- 3 of 58 --
+
+Red-Black Trees
+• A Red-Black Tree is a type of self-balancing binary search
+tree.
+• It maintains several additional properties to ensure that the
+tree remains approximately balanced, which helps keep the
+operations such as insertion, deletion, and searching
+efficient, generally within 𝑂(log 𝑛) complexity, where 𝑛 is
+the number of nodes in the tree.
+Jiacheng Li, Ph.D.
+4
+
+-- 4 of 58 --
+
+Properties of red-black trees
+A red-black tree is a binary search tree that satisfies the
+following Red-black properties:
+1. Every node is either red or black.
+2. The root is black.
+3. Every leaf (NIL) is black.
+4. If a node is red, then both its children are black.
+5. For each node, all simple paths from the node to descendant leaves
+contain the same number of black nodes.
+Proposition: The height of a red-black tree with n internal
+nodes is ≤ 2 * lg(n+1) = O(lg n).
+Jiacheng Li, Ph.D.
+5
+
+-- 5 of 58 --
+
+Sample Red-Black Tree
+Figure 1: A Red-black tree with explicit NIL leaves.
+Jiacheng Li, Ph.D.
+6
+
+-- 6 of 58 --
+
+A Common Red-Black Tree
+Figure: A red-black tree with implicit NIL leaves.
+Jiacheng Li, Ph.D.
+7
+
+-- 7 of 58 --
+
+Red-Black Trees
+• The rotation function in a Red-Black Tree is essential for
+maintaining the tree's balance after insertions or deletions.
+• In Red-Black Trees, the goal is to keep the tree's height
+approximately logarithmic, which ensures that search, insert,
+and delete operations can all be performed in O(lg 𝑛) time.
+• Rotation functions:
+➢A Left Rotation is applied when the tree becomes right-heavy (i.e.,
+when a node has a heavy right subtree, causing the tree to become
+unbalanced).
+➢A Right Rotation is applied when the tree becomes left-heavy (i.e.,
+when a node has a heavy left subtree).
+Jiacheng Li, Ph.D.
+8
+
+-- 8 of 58 --
+
+Rotations
+Figure: The rotation operations on a binary search tree.
+Rotation preserves BST property
+𝛼 < x < 𝛽 < y < 𝛾
+Jiacheng Li, Ph.D.
+9
+
+-- 9 of 58 --
+
+Rotations - Pseudocode
+Jiacheng Li, Ph.D.
+10
+
+-- 10 of 58 --
+
+Rotations
+x
+y
+a b
+Set y
+Jiacheng Li, Ph.D.
+11
+
+-- 11 of 58 --
+
+Rotations
+x.right = y.left;
+x.right = a;
+x
+y
+a b
+turn y’s left subtree into x’s right subtree
+Jiacheng Li, Ph.D.
+12
+
+-- 12 of 58 --
+
+Rotations
+x.right = y.left;
+x.right = a;
+y.left.p = x;
+a.p = x;
+x
+y
+a b
+turn y’s left subtree into x’s right subtree
+Jiacheng Li, Ph.D.
+13
+
+-- 13 of 58 --
+
+Rotations
+x.right = y.left;
+x.right = a;
+y.left.p = x;
+a.p = x;
+x
+y
+a b
+turn y’s left subtree into x’s right subtree
+Jiacheng Li, Ph.D.
+14
+
+-- 14 of 58 --
+
+Rotations
+x
+a
+x.right = y.left;
+x.right = a;
+y.left.p = x;
+a.p = x;
+x
+y
+a b
+turn y’s left subtree into x’s right subtree
+Jiacheng Li, Ph.D.
+15
+
+-- 15 of 58 --
+
+Rotations
+x
+a
+y
+b
+y is temporarily disconnected.
+Jiacheng Li, Ph.D.
+16
+
+-- 16 of 58 --
+
+Rotations
+x
+a
+y
+b
+y is temporarily disconnected.
+link x’s parent to y.
+Jiacheng Li, Ph.D.
+17
+
+-- 17 of 58 --
+
+Rotations
+x
+a
+y
+b
+root
+Jiacheng Li, Ph.D.
+18
+
+-- 18 of 58 --
+
+Rotations
+x
+a
+y
+b
+root
+Jiacheng Li, Ph.D.
+19
+
+-- 19 of 58 --
+
+Rotations
+x
+a
+y
+b
+root
+put x on y’s left
+Jiacheng Li, Ph.D.
+20
+
+-- 20 of 58 --
+
+Rotations
+y
+x b
+a
+x
+a
+y
+b
+root
+root
+put x on y’s left
+Jiacheng Li, Ph.D.
+21
+
+-- 21 of 58 --
+
+y
+x b
+a
+x
+y
+a b
+Rotations - finished
+Left-Rotation
+Jiacheng Li, Ph.D.
+22
+
+-- 22 of 58 --
+
+Rotations - lines 8&9
+x
+y
+a b
+z
+Jiacheng Li, Ph.D.
+23
+
+-- 23 of 58 --
+
+Rotations - lines 8&9
+x
+y
+a b
+z
+Jiacheng Li, Ph.D.
+24
+
+-- 24 of 58 --
+
+Rotations - lines 8&9
+x
+y
+a b
+z
+Jiacheng Li, Ph.D.
+25
+
+-- 25 of 58 --
+
+Rotations - lines 8&9
+x
+a
+z
+y
+b
+y is temporarily disconnected.
+Jiacheng Li, Ph.D.
+26
+
+-- 26 of 58 --
+
+Rotations - lines 8&9
+x
+a
+z
+y
+b
+y is temporarily disconnected.
+Jiacheng Li, Ph.D.
+27
+
+-- 27 of 58 --
+
+Rotations - lines 8&9
+y
+b
+z
+x
+a
+Jiacheng Li, Ph.D.
+28
+
+-- 28 of 58 --
+
+Rotations - finished
+Left-Rotation
+x
+y
+a b
+z
+y
+b
+z
+x
+a
+Jiacheng Li, Ph.D.
+29
+
+-- 29 of 58 --
+
+Rotations - line 10
+x
+y
+a b
+z
+Jiacheng Li, Ph.D.
+30
+
+-- 30 of 58 --
+
+Rotations - line 10
+x
+a
+z y
+b
+Jiacheng Li, Ph.D.
+31
+
+-- 31 of 58 --
+
+Rotations - line 10
+x
+a
+z y
+b
+Jiacheng Li, Ph.D.
+32
+
+-- 32 of 58 --
+
+Rotations - line 10
+y
+b
+z
+x
+b
+Jiacheng Li, Ph.D.
+33
+
+-- 33 of 58 --
+
+Rotations - finished
+Left-Rotationx
+y
+a b
+z
+y
+b
+z
+x
+a
+Jiacheng Li, Ph.D.
+34
+
+-- 34 of 58 --
+
+Rotations - Practice
+Jiacheng Li, Ph.D.
+35
+
+-- 35 of 58 --
+
+Rotations - Practice
+Jiacheng Li, Ph.D.
+36
+
+-- 36 of 58 --
+
+Rotations – Pseudocode (L)
+Jiacheng Li, Ph.D.
+37
+
+-- 37 of 58 --
+
+Rotations – Pseudocode (R)
+Jiacheng Li, Ph.D.
+38
+
+-- 38 of 58 --
+
+Insertion
+Jiacheng Li, Ph.D.
+39
+
+-- 39 of 58 --
+
+Insertion
+Because coloring z red may violate one of the red-black properties, we call RB-INSERT-FIXUP(T. z)
+in line 17 of RB-INSERT to restore the red-black properties.	Jiacheng Li, Ph.D.
+40
+
+-- 40 of 58 --
+
+Insertion
+Jiacheng Li, Ph.D.
+41
+
+-- 41 of 58 --
+
+Insertion
+Jiacheng Li, Ph.D.
+42
+
+-- 42 of 58 --
+
+Insertion
+Jiacheng Li, Ph.D.
+43
+
+-- 43 of 58 --
+
+Insertion
+Jiacheng Li, Ph.D.
+44
+
+-- 44 of 58 --
+
+Insertion
+Jiacheng Li, Ph.D.
+45
+
+-- 45 of 58 --
+
+Insertion We perform a left rotation.
+Jiacheng Li, Ph.D.
+46
+
+-- 46 of 58 --
+
+Insertion We perform a left rotation.
+Jiacheng Li, Ph.D.
+47
+
+-- 47 of 58 --
+
+Insertion We perform a right rotation.
+Jiacheng Li, Ph.D.
+48
+
+-- 48 of 58 --
+
+Insertion We perform a right rotation.
+Jiacheng Li, Ph.D.
+49
+
+-- 49 of 58 --
+
+Insertion - Practice
+Jiacheng Li, Ph.D.
+50
+
+-- 50 of 58 --
+
+Insertion - Practice
+Jiacheng Li, Ph.D.
+51
+
+-- 51 of 58 --
+
+Insertion - Practice
+Jiacheng Li, Ph.D.
+52
+
+-- 52 of 58 --
+
+Insertion - Practice
+Jiacheng Li, Ph.D.
+53
+
+-- 53 of 58 --
+
+Insertion - Practice
+Jiacheng Li, Ph.D.
+54
+
+-- 54 of 58 --
+
+Insertion - Practice
+Jiacheng Li, Ph.D.
+55
+
+-- 55 of 58 --
+
+RBT - Practice
+• Show the red-black tree that result after successively
+inserting the following keys into an initially empty
+red-black tree:
+41, 38, 31, 12, 9, 8
+Jiacheng Li, Ph.D.
+56
+
+-- 56 of 58 --
+
+RBT - Practice
+Draw the red-black tree that results after TREE_INSERT is
+called on the tree below with key 36. If the inserted node is
+colored red, is the resulting tree a red-back tree? What if it is
+colored black?
+Jiacheng Li, Ph.D.
+57
+
+-- 57 of 58 --
+
+Questions?
+Jiacheng Li, Ph.D.
+67
+
+-- 58 of 58 --
+

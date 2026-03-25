@@ -1,0 +1,2115 @@
+Jiacheng Li, Ph.D. 1
+
+-- 1 of 64 --
+
+Huffman Codes
+Reducing the Length of a Message’s Binary Encoding
+CS 201: Data Structures and Algorithms
+Jiacheng Li, Ph.D.
+Jiacheng Li, Ph.D. 2
+
+-- 2 of 64 --
+
+Huffman Codes
+• Huffman codes are variable-length binary codes assigned to
+symbols based on their frequencies.
+• Symbols that occur more often are given shorter codes,
+while less frequent symbols are given longer codes,
+resulting in efficient and lossless data compression.
+• These codes are generated using the Huffman coding
+algorithm, which builds a binary tree that minimizes the
+total number of bits required to represent the data.
+Jiacheng Li, Ph.D. 3
+
+-- 3 of 64 --
+
+Set the Stage
+• Alphabet A[1…n] with n characters
+• Relative frequencies F[1…n] of each character
+• Example
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+Jiacheng Li, Ph.D. 4
+
+-- 4 of 64 --
+
+Set the Stage (cont.)
+• Assign binary codes C[1…n] to each character
+o Fixed-length: every code is the same length
+o Variable-length: codes can be different lengths
+• Encode
+o Replace each character A[k] by its corresponding binary
+code C[k]
+• Decode
+o Replace each binary code C[k] by its corresponding
+character A[k]
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+Jiacheng Li, Ph.D. 5
+
+-- 5 of 64 --
+
+Goal
+• Goal: to obtain shortest encoded message length
+• Should we use fixed- or variable-length codes?
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C ? ? ? ? ? ? ? ? ? ?
+Jiacheng Li, Ph.D. 6
+
+-- 6 of 64 --
+
+Goal
+• Goal: to obtain shortest encoded message length
+• Use variable-length binary codes
+o Larger frequency  shorter binary code
+o Smaller frequency  longer binary code
+• To decode efficiently, the codes must satisfy the
+Prefix property
+o No character’s code C[k] is a prefix of any other
+character’s code C[k’]
+o Without prefix property, which character is decoded?
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C ? ? ? ? ? ? ? ? ? ?
+Jiacheng Li, Ph.D. 7
+
+-- 7 of 64 --
+
+Goal (cont.)
+• Goal: to obtain shortest encoded message length
+• By mapping the characters to variable-length binary
+codes C[1…n] that satisfy the prefix property and
+yield the shortest encoded message lengths
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C ? ? ? ? ? ? ? ? ? ?
+Jiacheng Li, Ph.D. 8
+
+-- 8 of 64 --
+
+Greedy Algorithm
+• Greedy Algorithm
+o Makes the optimal available choice at each step.
+o Does not make decisions by looking at the bigger picture.
+▪ It’s greedy
+o Does not always make the optimal answer.
+Jiacheng Li, Ph.D. 9
+
+-- 9 of 64 --
+
+Greedy Huffman Algorithm
+1. Construct a Huffman tree (binary tree)
+2. Assign each character a binary code
+Jiacheng Li, Ph.D. 10
+
+-- 10 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+1. Construct a Huffman tree (binary tree)
+H = new Heap(); // Min-heap
+for j = 1 to n
+H.insert( new Leaf(F[j], A[j]) ); // F[j] is key
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+Jiacheng Li, Ph.D. 11
+
+-- 11 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+H = new Heap(); // Create an empty min-heap.
+for j = 1 to n
+H.insert( new Leaf(F[j], A[j]) ); // F[j] is key
+2
+b
+1
+j
+6
+d
+3
+f
+8
+i
+7
+h
+12
+e
+9
+a
+4
+g
+5
+c
+Jiacheng Li, Ph.D. 12
+
+-- 12 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+2
+b
+1
+j
+6
+d
+3
+f
+8
+i
+7
+h
+12
+e
+9
+a
+4
+g
+5
+c
+Jiacheng Li, Ph.D. 13
+
+-- 13 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+2
+b
+1
+j
+6
+d
+3
+f
+8
+i
+7
+h
+12
+e
+9
+a
+4
+g
+5
+c
+Jiacheng Li, Ph.D. 14
+
+-- 14 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+6
+d
+3
+f
+8
+i
+7
+h
+12
+e
+9
+a
+4
+g
+5
+c 2
+b
+1
+j
+3
+Jiacheng Li, Ph.D. 15
+
+-- 15 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+6
+d
+3
+f
+8
+i
+7
+h
+12
+e
+9
+a
+4
+g
+5
+c 2
+b
+1
+j
+3
+Jiacheng Li, Ph.D. 16
+
+-- 16 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+6
+d
+3
+f
+8
+i
+7
+h
+12
+e
+9
+a
+4
+g
+5
+c 2
+b
+1
+j
+3
+Jiacheng Li, Ph.D. 17
+
+-- 17 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+6
+d
+8
+i
+7
+h
+12
+e
+9
+a
+4
+g
+5
+c
+2
+b
+1
+j
+3
+f
+3
+6
+Jiacheng Li, Ph.D. 18
+
+-- 18 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+6
+d
+8
+i
+7
+h
+12
+e
+9
+a
+4
+g
+5
+c
+2
+b
+1
+j
+3
+f
+3
+6
+Jiacheng Li, Ph.D. 19
+
+-- 19 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+6
+d
+8
+i
+7
+h
+12
+e
+9
+a
+2
+b
+1
+j
+3
+f
+3
+6
+4
+g
+5
+c
+9
+Jiacheng Li, Ph.D. 20
+
+-- 20 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+6
+d
+8
+i
+7
+h
+12
+e
+9
+a
+2
+b
+1
+j
+3
+f
+3
+6
+4
+g
+5
+c
+9
+Jiacheng Li, Ph.D. 21
+
+-- 21 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+8
+i
+7
+h
+12
+e
+9
+a 4
+g
+5
+c
+9
+2
+b
+1
+j
+6
+d	3
+f
+3
+6
+12
+Jiacheng Li, Ph.D. 22
+
+-- 22 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+8
+i
+7
+h
+12
+e
+9
+a 4
+g
+5
+c
+9
+2
+b
+1
+j
+6
+d	3
+f
+3
+6
+12
+Jiacheng Li, Ph.D. 23
+
+-- 23 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+12
+e
+9
+a 4
+g
+5
+c
+9
+2
+b
+1
+j
+6
+d	3
+f
+3
+6
+12
+8
+i
+7
+h
+15
+Jiacheng Li, Ph.D. 24
+
+-- 24 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+12
+e
+9
+a 4
+g
+5
+c
+9
+2
+b
+1
+j
+6
+d	3
+f
+3
+6
+12
+8
+i
+7
+h
+15
+Jiacheng Li, Ph.D. 25
+
+-- 25 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+12
+e
+2
+b
+1
+j
+6
+d	3
+f
+3
+6
+12
+8
+i
+7
+h
+15
+9
+a	4
+g
+5
+c
+18
+9
+Jiacheng Li, Ph.D. 26
+
+-- 26 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+12
+e
+2
+b
+1
+j
+6
+d	3
+f
+3
+6
+12
+8
+i
+7
+h
+15
+9
+a	4
+g
+5
+c
+18
+9
+Jiacheng Li, Ph.D. 27
+
+-- 27 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+8
+i
+7
+h
+15
+9
+a	4
+g
+5
+c
+18
+9
+2
+b
+1
+j
+6
+d	3
+f
+12
+e
+3
+6
+12
+24
+Jiacheng Li, Ph.D. 28
+
+-- 28 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+8
+i
+7
+h
+15
+9
+a	4
+g
+5
+c
+18
+9
+2
+b
+1
+j
+6
+d	3
+f
+12
+e
+3
+6
+12
+24
+Jiacheng Li, Ph.D. 29
+
+-- 29 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+2
+b
+1
+j
+6
+d	3
+f
+12
+e
+3
+6
+12
+24
+8
+i
+7
+h
+9
+a	4
+g
+5
+c
+33
+15 18
+9
+Jiacheng Li, Ph.D. 30
+
+-- 30 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+2
+b
+1
+j
+6
+d	3
+f
+12
+e
+3
+6
+12
+24
+8
+i
+7
+h
+9
+a	4
+g
+5
+c
+33
+15 18
+9
+Jiacheng Li, Ph.D. 31
+
+-- 31 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+while (H.size() >= 2) {
+left = H.removeMin();
+right = H.removeMin();
+sum = left.key + right.key;
+H.insert(new Node(sum, left, right)); // sum is key
+}
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+57
+Jiacheng Li, Ph.D. 32
+
+-- 32 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+57
+root
+Jiacheng Li, Ph.D. 33
+
+-- 33 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+2. Assign each character a binary code
+Label each link to left child with 0
+Label each link to right child with 1
+Follow the path from root to each leaf node
+Concatenate the labels to obtain the binary code
+Jiacheng Li, Ph.D. 34
+
+-- 34 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+Label each link to left child with 0
+Label each link to right child with 1
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+57
+Jiacheng Li, Ph.D. 35
+
+-- 35 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+Label each link to left child with 0
+Label each link to right child with 1
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 36
+
+-- 36 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+Follow the path from root to each leaf node
+Concatenate the labels to obtain the binary code
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 37
+
+-- 37 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 38
+
+-- 38 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 39
+
+-- 39 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 40
+
+-- 40 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 41
+
+-- 41 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 42
+
+-- 42 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 43
+
+-- 43 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 44
+
+-- 44 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 1100 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 45
+
+-- 45 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 1100 100 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 46
+
+-- 46 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 1100 100 101 ?
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 47
+
+-- 47 of 64 --
+
+Greedy Huffman Algorithm (cont.)
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 1100 100 101 00000
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 48
+
+-- 48 of 64 --
+
+Encode
+• To encode a message, replace each character A[k] by
+its corresponding binary code C[k]
+• Example
+o abigchefahead
+o a b i g c h e f a h e a d
+o 111 00001 101 1100 1101 100 01 0001 111 100 01 111 001
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 1100 100 101 00000
+Jiacheng Li, Ph.D. 49
+
+-- 49 of 64 --
+
+Decode
+• To decode a message, replace each binary code C[k]
+by its corresponding character A[k]
+• Example
+o 111000011011100110110001000111110001111001
+o How to replace?
+A a b c d e f g h i j
+F 9 2 5 6 12 3 4 7 8 1
+C 111 00001 1101 001 01 0001 1100 100 101 00000
+Jiacheng Li, Ph.D. 50
+
+-- 50 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 51
+
+-- 51 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 52
+
+-- 52 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 53
+
+-- 53 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 54
+
+-- 54 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o a
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 55
+
+-- 55 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o a
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 56
+
+-- 56 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o a
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 57
+
+-- 57 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o a
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 58
+
+-- 58 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o a
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 59
+
+-- 59 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o a
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 60
+
+-- 60 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o a b
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 61
+
+-- 61 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o a b …
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 62
+
+-- 62 of 64 --
+
+Decode (cont.)
+• Example
+o 111000011011100110110001000111110001111001
+o abigchefahead
+2
+b
+1
+j
+6
+d	3
+f
+8
+i
+7
+h
+12
+e 9
+a	4
+g
+5
+c
+3
+6
+12
+24 33
+15 18
+9
+570 1
+0
+0
+0
+0
+0
+0
+0
+0
+1 1
+1
+1
+1
+1
+1 1
+Jiacheng Li, Ph.D. 63
+
+-- 63 of 64 --
+
+Questions?
+Jiacheng Li, Ph.D. 64
+
+-- 64 of 64 --
+

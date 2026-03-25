@@ -1,0 +1,434 @@
+Jiacheng Li, Ph.D. 1
+
+-- 1 of 21 --
+
+Building Trees from Traversals
+CS 201: Data Structures and Algorithms
+Jiacheng Li, Ph.D.
+Jiacheng Li, Ph.D. 2
+
+-- 2 of 21 --
+
+High Level View of Traversals
+• Consider the following tree:
+o Preorder: A B D E H C F J G
+o Postorder: D H E B J F G C A
+o Inorder: D B H E A F J C G
+o Level-order: A B C D E F G H J
+• Where is the root in each traversal?
+o Preorder: First
+o Postorder: Last
+o Inorder: Between the left and right subtrees
+o Level-order: First
+A
+B
+D E F G
+C
+H J
+Jiacheng Li, Ph.D. 3
+
+-- 3 of 21 --
+
+Building a Tree from a Traversal
+• Consider a tree with this preorder traversal:
+o A B C D E
+• We could build…
+• And more!
+• But it is not unique…
+A
+B
+C D
+E
+A
+B
+C
+D
+E
+A
+D
+C
+B
+E
+A
+C
+B
+D
+E
+A
+B
+D E
+C
+A
+B
+D E
+C
+Jiacheng Li, Ph.D. 4
+
+-- 4 of 21 --
+
+• Can we make a unique tree with all the traversals?
+o Preorder: A B
+o Postorder: B A
+o Level-order: A B
+o Inorder: B A
+• Possibilities:
+Building Unique Trees
+A
+B
+A
+B
+B
+A
+B
+A X	X	X Jiacheng Li, Ph.D. 5
+
+-- 5 of 21 --
+
+• Can we make a unique tree with these traversals?
+o Preorder: A B
+o Postorder: B A
+o Level-order: A B
+• Possibilities:
+Building Unique Trees
+A
+B
+A
+B
+B
+A
+B
+A X	XJiacheng Li, Ph.D. 6
+
+-- 6 of 21 --
+
+• Can we make a unique tree with these traversals?
+o Preorder: A B
+o Postorder: B A
+o Level-order: A B
+• The distinguishing traversal is the inorder traversal
+o Left’s Inorder: B A
+o Right’s Inorder A B
+Building Unique Trees
+A
+B
+A
+B
+Jiacheng Li, Ph.D. 7
+
+-- 7 of 21 --
+
+• Only the first traversal and inorder give us new info
+o Preorder: A B
+o Postorder: B A
+o Level-order: A B
+o Inorder: B A
+• Possibilities:
+Building Unique Trees
+A
+B
+A
+B
+B
+A
+B
+A X	X	X Jiacheng Li, Ph.D. 8
+
+-- 8 of 21 --
+
+• We can make a tree with one or more traversals
+• But to guarantee a unique tree, we must have:
+1. Inorder Traversal
+2. Another Traversal
+Building Unique Trees
+Jiacheng Li, Ph.D. 9
+
+-- 9 of 21 --
+
+High Level View of Traversals
+• Consider the following tree:
+o Preorder: A B D E H C F J G
+o Postorder: D H E B J F G C A
+o Inorder: D B H E A F J C G
+o Level-order: A B C D E F G H J
+• Where is the root in each traversal?
+o Preorder: First
+o Postorder: Last
+o Inorder: Between the left and right subtrees
+o Level-order: First
+A
+B
+D E F G
+C
+H J
+Jiacheng Li, Ph.D. 10
+
+-- 10 of 21 --
+
+High Level View of Pre and In
+• Consider the following tree:
+o Preorder: A B D E H C F J G
+o Inorder: D B H E A F J C G
+• Where is the root in each traversal?
+o Preorder: First
+o Inorder: Between the left and right subtrees
+A
+B
+D E F G
+C
+H J
+Jiacheng Li, Ph.D. 11
+
+-- 11 of 21 --
+
+• Preorder: A B D E H C F J G
+• Inorder: D B H E A F J C G
+1. Identify the root
+Tree from Preorder and Inorder
+Jiacheng Li, Ph.D. 12
+
+-- 12 of 21 --
+
+• Preorder: A B D E H C F J G
+• Inorder: D B H E A F J C G
+1. Identify the root
+2. Add it to the tree
+3. The left subtree elements are to the left of the root in the
+inorder traversal
+4. The right subtree elements are to the right of the root in
+the inorder traversal
+Tree from Preorder and Inorder
+A
+Jiacheng Li, Ph.D. 13
+
+-- 13 of 21 --
+
+• Preorder: A B D E H C F J G
+• Inorder: D B H E A F J C G
+1. Identify the root
+2. Add it to the tree
+3. The left subtree elements are to the left of the root in the
+inorder traversal
+4. The right subtree elements are to the right of the root in
+the inorder traversal
+5. Split the data in preorder
+Tree from Preorder and Inorder
+A
+Jiacheng Li, Ph.D. 14
+
+-- 14 of 21 --
+
+• Preorder: A B D E H C F J G
+• Inorder: D B H E A F J C G
+1. Identify the root
+2. Add it to the tree
+3. The left subtree elements are to the left of the root in the
+inorder traversal
+4. The right subtree elements are to the right of the root in
+the inorder traversal
+5. Split the data in preorder
+6. Recurse on the left data to form the left subtree
+7. Recurse on the right data to form the right subtree
+Tree from Preorder and Inorder
+A
+B D E H
+D B H E
+C F J G
+F J C G
+Jiacheng Li, Ph.D. 15
+
+-- 15 of 21 --
+
+Tree from Preorder and Inorder
+D
+D
+E H
+H E
+H
+H
+A
+C F J G
+F J C G
+B D E H
+D B H E
+B D E H
+D B H E
+1. Identify the root and add it to the tree
+2. Split the data
+3. Recurse on the left and right data
+C F J G
+F J C G
+B
+E H
+H E
+D
+D
+H
+H
+H
+D E
+C
+F J
+F J
+F J
+F J
+F
+J
+J
+J
+J
+J
+G
+G
+G
+G
+G
+Preorder
+Inorder
+Jiacheng Li, Ph.D. 16
+
+-- 16 of 21 --
+
+High Level View of Post and In
+• Consider the following tree:
+o Postorder: D H E B J F G C A
+o Inorder: D B H E A F J C G
+• Where is the root in each traversal?
+o Postorder: Last
+o Inorder: Between the left and right subtrees
+A
+B
+D E F G
+C
+H J
+Jiacheng Li, Ph.D. 17
+
+-- 17 of 21 --
+
+Tree from Postorder and Inorder
+D
+D
+H E
+H E
+H
+H
+J F G C
+F J C G
+D H E B
+D B H E
+D H E B
+D B H E
+1. Identify the root and add it to the tree
+2. Split the data
+3. Recurse on the left and right data
+J F G C
+F J C G
+B
+H E
+H E
+D
+D
+H
+H
+H
+D E
+C
+J F
+F J
+J F
+F J
+F
+J
+J
+J
+J
+J
+G
+G
+G
+G
+G
+D H E B J F G C A
+D B H E A F J C G
+A	Postorder
+Inorder
+Jiacheng Li, Ph.D. 18
+
+-- 18 of 21 --
+
+High Level View of Level and In
+• Consider the following tree:
+o Level-order: A B C D E F G H J
+o Inorder: D B H E A F J C G
+• Where is the root in each traversal?
+o Level-order: First
+o Inorder: Between the left and right subtrees
+• The split
+o Level-order: A B C D E F G H J
+o Inorder: D B H E A F J C G
+o Level-order splits: B D E H and C F G J (keep ordering)
+A
+B
+D E F G
+C
+H J
+Jiacheng Li, Ph.D. 19
+
+-- 19 of 21 --
+
+Tree from Level-order and Inorder
+D
+D
+E H
+H E
+H
+H
+C F G J
+F J C G
+B D E H
+D B H E
+B D E H
+D B H E
+1. Identify the root and add it to the tree
+2. Split the data
+3. Recurse on the left and right data
+C F G J
+F J C G
+B
+E H
+H E
+D
+D
+H
+H
+H
+D E
+C
+F J
+F J
+F J
+F J
+F
+J
+J
+J
+J
+J
+G
+G
+G
+G
+G
+Level-order
+Inorder
+A B C D E F G H J
+D B H E A F J C G
+A
+Jiacheng Li, Ph.D. 20
+
+-- 20 of 21 --
+
+Questions?
+Jiacheng Li, Ph.D. 21
+
+-- 21 of 21 --
+

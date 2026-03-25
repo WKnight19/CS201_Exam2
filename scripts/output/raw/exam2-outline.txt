@@ -1,0 +1,23 @@
+CS 201 Data Structures and Algorithms
+Exam-2 Outline
+Topics covered
+1. 	Huffman Codes:
+• 	Greedy Huffman Algorithm, decode, Encode
+2. 	Hierarchical data structures – Trees:
+• 	Non-Binary (N-ary) Trees:
+i. 	pre-order
+ii. 	post-order
+iii. 	level-order.
+• 	Complexity of tree traversal algorithms
+3. 	Advanced Data Structures:
+• 	Red-black trees
+i. 	Search Algorithm
+ii. 	Insert Algorithm
+iii. 	Delete Algorithm
+• 	B-Trees
+i. 	Search Algorithm
+ii. 	Insert Algorithm
+iii. 	Delete Algorithm
+
+-- 1 of 1 --
+

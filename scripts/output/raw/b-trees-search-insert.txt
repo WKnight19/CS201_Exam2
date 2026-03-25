@@ -1,0 +1,1919 @@
+Jiacheng Li, Ph.D.
+1
+
+-- 1 of 163 --
+
+B-Trees
+CS 201: Data Structures and Algorithms
+Jiacheng Li, Ph.D.
+Jiacheng Li, Ph.D.
+2
+
+-- 2 of 163 --
+
+Desktop Configuration
+• Main memory: RAM.
+• It's used for temporary data storage.
+Jiacheng Li, Ph.D.
+3
+
+-- 3 of 163 --
+
+Desktop Configuration
+• Disk Storage: Data is permanently stored.
+➢ Hard Disk Drive (HDD)
+➢ Solid-State Drive (SSD) Jiacheng Li, Ph.D.
+4
+
+-- 4 of 163 --
+
+Desktop Configuration
+• When you open a program or access a file, the operating system (OS) loads the necessary data and instructions from the
+disk storage into RAM.
+Jiacheng Li, Ph.D.
+5
+
+-- 5 of 163 --
+
+Desktop Configuration
+• Once the data and instructions are in RAM, the CPU can access them quickly and efficiently to perform the necessary
+operations.
+• The CPU cannot work directly with data on disk; it can only work with data in RAM.
+Jiacheng Li, Ph.D.
+6
+
+-- 6 of 163 --
+
+Example - Opening a Large Image File
+1. You click on a 2GB image file stored on your HDD/SSD.
+2. The OS checks if the image is already in RAM (cache).
+3. If not, the OS sends a DISK-READ request to the HDD/SSD.
+4. The disk finds the file and loads a large portion of the image into
+RAM.
+5. Your image viewer software processes the image from RAM (not
+directly from disk).
+6. If you edit and save the file, the updated data is written back to disk
+(DISK-WRITE).
+Jiacheng Li, Ph.D.
+7
+
+-- 7 of 163 --
+
+Desktop Configuration
+Jiacheng Li, Ph.D.
+8
+
+-- 8 of 163 --
+
+Indexing Structures for Fast Lookups
+Figure: A typical magnetic disk drive.
+• An indexing structure is a specialized
+data structure designed to speed up the
+retrieval of data from a larger dataset.
+In other words, it acts like a roadmap
+or table of contents, helping systems
+locate and access information quickly
+without scanning every item.
+• The most common indexing structures
+used in disk storage are:
+➢ B-Trees and B+ Trees.
+➢ Hash Indexing.
+Jiacheng Li, Ph.D.
+9
+
+-- 9 of 163 --
+
+B-Trees
+• High Branching Factor Keeps Tree Shallow
+➢Branching Factor: The number of children per node.
+➢B-trees have a high branching factor (e.g., 50–2000 children per
+node), keeping the tree shallow.
+➢Shallow trees mean fewer disk reads.
+Figure: A B-tree of height 2 containing over one billion keys.
+Jiacheng Li, Ph.D.
+11
+
+-- 10 of 163 --
+
+Comparison with BST
+• A Binary Search Tree (BST) has only one key per node, making it deep,
+requiring many disk reads.
+• A B-tree node contains many keys, making the tree shallow, requiring
+fewer disk reads.
+• Searching in a B-Tree vs. Binary Search Tree
+Jiacheng Li, Ph.D.
+12
+
+-- 11 of 163 --
+
+A simple B-tree
+Figure: A B-tree whose keys are the consonants of English.
+Jiacheng Li, Ph.D.
+13
+
+-- 12 of 163 --
+
+B-Trees
+• B-trees have five structural properties that ensure efficient
+operations and maintain balance.
+• These properties help B-trees achieve 𝑂(log 𝑛) performance
+for insertions, deletions, and searches by maintaining an
+orderly and balanced structure.
+• This efficiency makes them particularly suitable for systems
+where large blocks of data are managed and accessed
+frequently.
+Jiacheng Li, Ph.D.
+14
+
+-- 13 of 163 --
+
+Five Structural Properties
+Jiacheng Li, Ph.D.
+15
+
+-- 14 of 163 --
+
+Five Structural Properties
+Jiacheng Li, Ph.D.
+16
+
+-- 15 of 163 --
+
+Five Structural Properties
+Jiacheng Li, Ph.D.
+17
+
+-- 16 of 163 --
+
+Five Structural Properties
+Jiacheng Li, Ph.D.
+18
+
+-- 17 of 163 --
+
+Five Structural Properties
+Jiacheng Li, Ph.D.
+19
+
+-- 18 of 163 --
+
+Search Operation
+Jiacheng Li, Ph.D.
+20
+
+-- 19 of 163 --
+
+Search
+Jiacheng Li, Ph.D.
+21
+
+-- 20 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+22
+
+-- 21 of 163 --
+
+Search
+𝑥 = [100] and 𝑘 = 120.
+𝑘 = 120
+Jiacheng Li, Ph.D.
+23
+
+-- 22 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+24
+
+-- 23 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+25
+
+-- 24 of 163 --
+
+Search
+𝑘 = 120
+𝑖 = 2.
+Jiacheng Li, Ph.D.
+26
+
+-- 25 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+27
+
+-- 26 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+28
+
+-- 27 of 163 --
+
+Search
+𝑘 = 120
+𝑥. 𝑐 2 = 130, 180 .
+Jiacheng Li, Ph.D.
+29
+
+-- 28 of 163 --
+
+Search
+𝑘 = 120
+𝑥. 𝑐 2 = 130, 180 and 𝑘 = 120.
+Jiacheng Li, Ph.D.
+30
+
+-- 29 of 163 --
+
+Search
+𝑘 = 120
+𝑥 = 130, 180 and 𝑘 = 120.
+Jiacheng Li, Ph.D.
+31
+
+-- 30 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+32
+
+-- 31 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+33
+
+-- 32 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+34
+
+-- 33 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+35
+
+-- 34 of 163 --
+
+Search
+𝑘 = 120
+𝑥. 𝑐 1 = 110, 120 .
+Jiacheng Li, Ph.D.
+36
+
+-- 35 of 163 --
+
+Search
+𝑘 = 120
+𝑥. 𝑐 1 = 110, 120 and 𝑘 = 120.
+Jiacheng Li, Ph.D.
+37
+
+-- 36 of 163 --
+
+Search
+𝑘 = 120
+𝑥 = 110, 120 and 𝑘 = 120.
+Jiacheng Li, Ph.D.
+38
+
+-- 37 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+39
+
+-- 38 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+40
+
+-- 39 of 163 --
+
+Search
+𝑘 = 120
+𝑖 = 2.
+Jiacheng Li, Ph.D.
+41
+
+-- 40 of 163 --
+
+Search
+𝑘 = 120
+Jiacheng Li, Ph.D.
+42
+
+-- 41 of 163 --
+
+Search
+𝑘 = 120
+𝑥 = 110, 120 and 𝑖 = 2.
+Jiacheng Li, Ph.D.
+43
+
+-- 42 of 163 --
+
+Search
+*Can we find the key in the current node?
+*If not, are we at a leaf node?
+*If not, which child should we search next?
+Jiacheng Li, Ph.D.
+44
+*Where should key be located in this node?
+
+-- 43 of 163 --
+
+DISK-READ()
+• The DISK-READ operation is a function that deals with
+reading data from a secondary storage device, like a hard
+disk, into main memory.
+• The primary purpose is to load a specific node of the B-tree
+from disk into main memory for processing. In a B-tree used
+in a database, the nodes are typically stored on disk,
+and DISK-READ is necessary to interact with these nodes
+during search, insert, or delete operations.
+• In the context of B-trees, which are often used in databases
+and file systems, this operation is crucial because B-trees can
+be very large and not entirely fit into main memory.
+Jiacheng Li, Ph.D.
+45
+
+-- 44 of 163 --
+
+Usage in B-Trees
+• In the B-TREE-SEARCH algorithm, when the search for a
+key descends from the current node to one of its children, the
+child node may not be in main memory. The DISK-READ
+operation is used to load the child node from disk into main
+memory so that the search can continue.
+• Typically, DISK-READ takes the address or identifier of the
+node (often referred to as a pointer or a disk block address)
+as a parameter. In the pseudocode, 𝑥. 𝑐𝑖 would be the
+identifier for the child node 𝑖 of node 𝑥, where 𝑐𝑖 points to
+the location on the disk where this child node is stored.
+** It ensures that the data is brought into main memory.
+Jiacheng Li, Ph.D.
+46
+
+-- 45 of 163 --
+
+Example
+• When a B-tree node is accessed during a search and it is
+determined that the desired key might be in a child node, the
+program will execute DISK-READ(𝑥. 𝑐𝑖) to read the 𝑖-th
+child from disk into memory.
+• Once the node is in memory, the search function B-TREE-
+SEARCH can be recursively called on this node to continue
+the search.
+Jiacheng Li, Ph.D.
+47
+
+-- 46 of 163 --
+
+Search
+Jiacheng Li, Ph.D.
+48
+
+-- 47 of 163 --
+
+Inserting Operation
+Jiacheng Li, Ph.D.
+49
+
+-- 48 of 163 --
+
+Insertion Operation
+Jiacheng Li, Ph.D.
+50
+
+-- 49 of 163 --
+
+Creating an empty B-tree
+𝑥
+Jiacheng Li, Ph.D.
+51
+
+-- 50 of 163 --
+
+Creating an empty B-tree
+𝑥
+Jiacheng Li, Ph.D.
+52
+in memory
+
+-- 51 of 163 --
+
+Creating an empty B-tree
+𝑥
+Jiacheng Li, Ph.D.
+53
+
+-- 52 of 163 --
+
+Creating an empty B-tree
+𝑥
+Jiacheng Li, Ph.D.
+54
+
+-- 53 of 163 --
+
+Creating an empty B-tree
+𝑥
+Jiacheng Li, Ph.D.
+55
+Save it to disk storage
+
+-- 54 of 163 --
+
+Creating an empty B-tree
+T.root
+Jiacheng Li, Ph.D.
+56
+
+-- 55 of 163 --
+
+Inserting a key into a B-tree
+Jiacheng Li, Ph.D.
+58
+
+-- 56 of 163 --
+
+Inserting 5 into a B-tree
+***Focusing on B-Tree-Insert-Nonfull(𝑥, 𝑘).
+Jiacheng Li, Ph.D.
+60
+
+-- 57 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+Jiacheng Li, Ph.D.
+64
+
+-- 58 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+Jiacheng Li, Ph.D.
+65
+
+-- 59 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+Jiacheng Li, Ph.D.
+66
+
+-- 60 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6• 𝑟 = [3].
+• 𝑘 = 5.
+Jiacheng Li, Ph.D.
+67
+
+-- 61 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+𝑟 = [3] and 𝑘 = 5.
+Jiacheng Li, Ph.D.
+68
+
+-- 62 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+𝑖 = 1.
+Jiacheng Li, Ph.D.
+69
+
+-- 63 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+Jiacheng Li, Ph.D.
+70
+
+-- 64 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+Jiacheng Li, Ph.D.
+71
+
+-- 65 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+𝑖 = 1.
+Jiacheng Li, Ph.D.
+72
+
+-- 66 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+𝑖 = 2.
+Jiacheng Li, Ph.D.
+73
+
+-- 67 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+𝑥. 𝑐2= [4, 6].
+Jiacheng Li, Ph.D.
+74
+
+-- 68 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+2 == 3 ? ? ?
+Jiacheng Li, Ph.D.
+75
+
+-- 69 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+𝑥. 𝑐2= [4, 6] and 𝑘 = 5.
+Jiacheng Li, Ph.D.
+76
+
+-- 70 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥. 𝑐2= [4, 6] and 𝑘 = 5.
+Jiacheng Li, Ph.D.
+77
+𝑥
+
+-- 71 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥
+𝑥. 𝑛 = 2.
+Jiacheng Li, Ph.D.
+78
+
+-- 72 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+True.
+Jiacheng Li, Ph.D.
+79
+𝑥
+
+-- 73 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+True.
+Jiacheng Li, Ph.D.
+80
+𝑥
+
+-- 74 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑥. 𝑘𝑒𝑦3 = 𝑥. 𝑘𝑒𝑦2 = 6.
+Jiacheng Li, Ph.D.
+81
+𝑥
+
+-- 75 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 6
+𝑖 = 1
+Jiacheng Li, Ph.D.
+82
+𝑥
+
+-- 76 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 5 6
+𝑥. 𝑘𝑒𝑦2= 5
+Jiacheng Li, Ph.D.
+83
+𝑥
+
+-- 77 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 5 6
+𝑥. 𝑛 = 3
+Jiacheng Li, Ph.D.
+84
+𝑥
+
+-- 78 of 163 --
+
+Inserting 5 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+3
+1 2 4 5 6
+Jiacheng Li, Ph.D.
+85
+𝑥
+
+-- 79 of 163 --
+
+Inserting 5 into a B-tree
+Jiacheng Li, Ph.D.
+86
+3
+1 2 4 5 6
+3
+1 2 4 6
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 5
+
+-- 80 of 163 --
+
+Inserting 7 into a B-tree
+***Focusing on B-Tree-Split-Child(𝑥, 𝑖).
+Jiacheng Li, Ph.D.
+87
+
+-- 81 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+Jiacheng Li, Ph.D.
+90
+
+-- 82 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+Jiacheng Li, Ph.D.
+91
+
+-- 83 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+Jiacheng Li, Ph.D.
+92
+
+-- 84 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6	• 𝑟 = [3]
+• 𝑘 = 7
+Jiacheng Li, Ph.D.
+93
+
+-- 85 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+𝑥 = [3] and 𝑘 = 7.
+Jiacheng Li, Ph.D.
+94
+
+-- 86 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+𝑖 = 1.
+Jiacheng Li, Ph.D.
+95
+
+-- 87 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+Jiacheng Li, Ph.D.
+96
+
+-- 88 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+Jiacheng Li, Ph.D.
+97
+
+-- 89 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+Jiacheng Li, Ph.D.
+98
+
+-- 90 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+𝑖 = 2.
+Jiacheng Li, Ph.D.
+99
+
+-- 91 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+𝑥. 𝑐2 = [4, 5, 6].
+Jiacheng Li, Ph.D.
+100
+
+-- 92 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+True.
+Jiacheng Li, Ph.D.
+101
+
+-- 93 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥
+𝑥 = [3] and 𝑖 = 2.
+Jiacheng Li, Ph.D.
+102
+
+-- 94 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑥 = 3 and 𝑖 = 2.
+𝑥
+Jiacheng Li, Ph.D.
+103
+
+-- 95 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑦 = [4, 5, 6]
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+104
+
+-- 96 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑧
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+105
+
+-- 97 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑧
+𝑦 is a leaf node.
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+106
+
+-- 98 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑧
+𝑡 is 2. → z. 𝑛 = 1.
+𝑧. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+107
+
+-- 99 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑧
+Transfer of keys to 𝑧.
+𝑡. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+108
+
+-- 100 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+6
+𝑧
+𝑡. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+109
+
+-- 101 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+6
+𝑧
+𝑦 is a leaf node.
+𝑡. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+110
+
+-- 102 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+6
+𝑧
+Adjust 𝑦’s key count.
+𝑡. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+111
+
+-- 103 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+6
+𝑧
+Inserting 𝑧 into parent’s child array.
+• 𝑗 = 1 + 1 = 2.
+• 𝑖 + 1 = 3.
+𝑡. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+112
+
+-- 104 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+6
+𝑧
+No shifting is necessary
+𝑡. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+113
+
+-- 105 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+6
+𝑧
+𝑡. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+114
+
+-- 106 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑧
+𝑡. 𝑛 = 1
+𝑦
+𝑥
+Jiacheng Li, Ph.D.
+115
+
+-- 107 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑧
+𝑡. 𝑛 = 1
+𝑦
+Adjust parent node keys and structure
+• 𝑥. 𝑛 = 1.
+• 𝑖 = 2.
+𝑥
+Jiacheng Li, Ph.D.
+116
+
+-- 108 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3
+1 2 4 5 6
+𝑧
+𝑡. 𝑛 = 1
+𝑦
+𝑡 = 2
+𝑥
+Jiacheng Li, Ph.D.
+117
+
+-- 109 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3 5
+1 2 4 5 6
+𝑧
+𝑡. 𝑛 = 1
+𝑦
+𝑡 = 2
+𝑥
+Jiacheng Li, Ph.D.
+118
+
+-- 110 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3 5
+1 2 4 5 6
+𝑧
+𝑡. 𝑛 = 1
+𝑦
+Save changes to 𝑦, 𝑧, and 𝑥 to disk.
+𝑥
+Jiacheng Li, Ph.D.
+119
+
+-- 111 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3 5
+1 2 4 6
+𝑥
+𝑖 = 2. 7 > 𝑥. 𝑘𝑒𝑦 2 = 5
+Jiacheng Li, Ph.D.
+120
+
+-- 112 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+𝑖 = 3.
+3 5
+1 2 4 6
+𝑥
+Jiacheng Li, Ph.D.
+121
+
+-- 113 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+• 𝑥. 𝑐3 = [6].
+• 𝑘 = 7.
+3 5
+1 2 4 6
+𝑥
+Jiacheng Li, Ph.D.
+122
+
+-- 114 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+𝑥 = [6] and 𝑘 = 7.
+3 5
+1 2 4 6
+Jiacheng Li, Ph.D.
+123
+𝑥
+
+-- 115 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+𝑖 = 1.
+3 5
+1 2 4 6
+Jiacheng Li, Ph.D.
+124
+𝑥
+
+-- 116 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+True.
+3 5
+1 2 4 6
+Jiacheng Li, Ph.D.
+125
+𝑥
+
+-- 117 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3 5
+1 2 4 6
+Jiacheng Li, Ph.D.
+126
+𝑥
+
+-- 118 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3 5
+1 2 4 6 7
+𝑥. 𝑘𝑒𝑦2 = 7
+Jiacheng Li, Ph.D.
+127
+𝑥
+
+-- 119 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3 5
+1 2 4 6 7
+𝑥. 𝑛 = 2
+Jiacheng Li, Ph.D.
+128
+𝑥
+
+-- 120 of 163 --
+
+Inserting 7 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+3 5
+1 2 4 6 7
+Jiacheng Li, Ph.D.
+129
+𝑥
+
+-- 121 of 163 --
+
+Inserting 7 into a B-tree
+Jiacheng Li, Ph.D.
+130
+3 5
+1 2 4 6 7
+3
+1 2 4 5 6
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 7
+
+-- 122 of 163 --
+
+Inserting 10 into a B-tree
+***Focusing on B-Tree-Split-Root(T).
+Jiacheng Li, Ph.D.
+131
+
+-- 123 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+Jiacheng Li, Ph.D.
+133
+
+-- 124 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+Jiacheng Li, Ph.D.
+134
+
+-- 125 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+Jiacheng Li, Ph.D.
+135
+
+-- 126 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+𝑟. 𝑛 = 3
+Jiacheng Li, Ph.D.
+136
+
+-- 127 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+Jiacheng Li, Ph.D.
+137
+
+-- 128 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+Jiacheng Li, Ph.D.
+138
+
+-- 129 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+𝑠
+Jiacheng Li, Ph.D.
+139
+
+-- 130 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+𝑠	𝑠 is an internal node.
+Jiacheng Li, Ph.D.
+140
+
+-- 131 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9
+𝑥
+4 6
+𝑠
+Jiacheng Li, Ph.D.
+141
+
+-- 132 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑠
+Jiacheng Li, Ph.D.
+142
+
+-- 133 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑠
+Jiacheng Li, Ph.D.
+143
+
+-- 134 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑠
+Jiacheng Li, Ph.D.
+144
+
+-- 135 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+𝑖 = 1.
+Jiacheng Li, Ph.D.
+145
+
+-- 136 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+𝑦 = 𝑥. 𝑐1 = [3, 5, 7].
+𝑦
+Jiacheng Li, Ph.D.
+146
+
+-- 137 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+𝑦 𝑧
+Jiacheng Li, Ph.D.
+147
+
+-- 138 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+𝑦
+𝑦.leaf is an internal node.
+𝑧
+Jiacheng Li, Ph.D.
+148
+
+-- 139 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥𝑧. 𝑛 = 2 − 1 = 1.
+𝑦 𝑧
+Jiacheng Li, Ph.D.
+149
+
+-- 140 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+𝑦
+Key Movement.
+𝑧
+Jiacheng Li, Ph.D.
+150
+
+-- 141 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+7
+𝑦. 𝑘𝑒𝑦3 = 7
+𝑦 𝑧
+Jiacheng Li, Ph.D.
+151
+
+-- 142 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+7	𝑦 𝑧
+Jiacheng Li, Ph.D.
+152
+
+-- 143 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+7	𝑦 𝑧
+Jiacheng Li, Ph.D.
+153
+
+-- 144 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+7	𝑦 𝑧
+Jiacheng Li, Ph.D.
+154
+
+-- 145 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+7	𝑦 𝑧
+Jiacheng Li, Ph.D.
+155
+
+-- 146 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+7 𝑧	𝑦
+Jiacheng Li, Ph.D.
+156
+
+-- 147 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+𝑥
+7 𝑧	𝑦
+Jiacheng Li, Ph.D.
+157
+
+-- 148 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+5
+𝑥
+7 𝑧	𝑦
+Jiacheng Li, Ph.D.
+158
+
+-- 149 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3 5 7
+1 8 9	4 6
+5
+𝑥
+7 𝑧	𝑦
+Jiacheng Li, Ph.D.
+159
+
+-- 150 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3
+1 8 9	4 6
+5
+𝑥
+7
+𝑧	𝑦
+Save changes to 𝑦, 𝑧, and 𝑥 to disk.
+Jiacheng Li, Ph.D.
+160
+
+-- 151 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3
+1 8 9	4 6
+5
+𝑠
+7
+𝑧	𝑦
+Jiacheng Li, Ph.D.
+161
+
+-- 152 of 163 --
+
+Inserting 10 into a B-tree
+Let's consider a B-tree with a minimum degree 𝑡 = 2, which
+means each node can have a minimum of 1 and a maximum of
+3 keys.
+𝑘 = 10
+3
+1 8 9	4 6
+5
+𝑠
+7
+𝑧	𝑦
+Jiacheng Li, Ph.D.
+162
+
+-- 153 of 163 --
+
+B-Tree Practice from the Textbook.
+Jiacheng Li, Ph.D.
+163
+
+-- 154 of 163 --
+
+Splitting the root 𝑟 with 𝑡 = 4
+Figure: Splitting the root with 𝑟 = 4.
+Jiacheng Li, Ph.D.
+164
+
+-- 155 of 163 --
+
+Splitting the root 𝑟 with 𝑡 = 4
+Figure: Splitting the root with 𝑟 = 4.
+***The new root contains the median key of 𝑟 and has the two halves of 𝑟 as children.
+Jiacheng Li, Ph.D.
+165
+
+-- 156 of 163 --
+
+Inserting keys into a B-tree
+(a) Initial Tree.
+Insert 𝐵.
+***The minimum degree for this B-tree is 3.
+Jiacheng Li, Ph.D.
+166
+
+-- 157 of 163 --
+
+Inserting keys into a B-tree
+(b) 𝐵 Inserted.
+Insert 𝑄.
+***The minimum degree for this B-tree is 3.
+Jiacheng Li, Ph.D.
+167
+
+-- 158 of 163 --
+
+Inserting keys into a B-tree
+(c) 𝑄 Inserted.
+Insert 𝐿.
+***The minimum degree for this B-tree is 3.
+Jiacheng Li, Ph.D.
+168
+
+-- 159 of 163 --
+
+Inserting keys into a B-tree
+(d) 𝐿 Inserted.
+Insert 𝐹.
+***The minimum degree for this B-tree is 3.
+Jiacheng Li, Ph.D.
+169
+
+-- 160 of 163 --
+
+Inserting keys into a B-tree
+(e) 𝐹 Inserted.
+***The minimum degree for this B-tree is 3.
+Jiacheng Li, Ph.D.
+170
+
+-- 161 of 163 --
+
+Questions?
+Jiacheng Li, Ph.D.
+171
+
+-- 162 of 163 --
+
+Jiacheng Li, Ph.D.
+172
+
+-- 163 of 163 --
+

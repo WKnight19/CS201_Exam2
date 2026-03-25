@@ -1,4 +1,4 @@
-import pdf from "pdf-parse";
+import { PDFParse } from "pdf-parse";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -34,20 +34,34 @@ async function extractAll(): Promise<void> {
 
     try {
       const buffer = readFileSync(srcPath);
-      const data = await pdf(buffer);
-      const text = data.text;
+      const data = new Uint8Array(buffer);
+      // pdf-parse@2.x uses PDFParse class; options (including data) are passed to constructor
+      const parser = new PDFParse({ data } as Parameters<typeof PDFParse>[0]);
+      await parser.load();
+      const result = await parser.getText();
+
+      // getText() returns { pages, text, total }
+      const textResult = result as unknown as { text: string; pages: unknown[] };
+      const text = textResult.text ?? String(result);
+
       writeFileSync(destPath, text, "utf-8");
 
       const charCount = text.length;
-      const pageCount = data.numpages;
+      const pageCount = textResult.pages?.length ?? "?";
 
       if (charCount < 100) {
-        console.warn(`⚠  WARNING: ${src} — only ${charCount} chars extracted (${pageCount} pages). Likely image-only PDF. Manual transcription required.`);
+        console.warn(
+          `WARNING: ${src} — only ${charCount} chars extracted (${pageCount} pages). Likely image-only PDF. Manual transcription required.`
+        );
       } else {
-        console.log(`✓  ${src} → ${dest} (${charCount} chars, ${pageCount} pages)`);
+        console.log(
+          `OK  ${src} -> ${dest} (${charCount} chars, ${pageCount} pages)`
+        );
       }
+
+      await parser.destroy();
     } catch (err) {
-      console.error(`✗  FAILED: ${src} — ${(err as Error).message}`);
+      console.error(`FAILED: ${src} — ${(err as Error).message}`);
       process.exitCode = 1;
     }
   }

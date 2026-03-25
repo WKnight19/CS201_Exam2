@@ -1,0 +1,1077 @@
+Jiacheng Li, Ph.D. 1
+
+-- 1 of 50 --
+
+Binary Search Trees (BST)
+CS 201: Data Structures and Algorithms
+Jiacheng Li, Ph.D.
+Jiacheng Li, Ph.D. 2
+To Implement Set and Dictionary ADTs
+by Performing Binary Search
+
+-- 2 of 50 --
+
+Recall These ADTs
+• Set
+o void insert(ElementType x)
+o boolean find(ElementType x)
+o void remove(ElementType x)
+• Dictionary
+o void insert(ElementType key, AnotherType val)
+o AnotherType find(ElementType key)
+o void remove(ElementType key)
+o A dictionary acts as a function or mapping:
+▪ find(key) = val
+Jiacheng Li, Ph.D. 3
+
+-- 3 of 50 --
+
+Implementations
+• Linked lists (inefficient)
+o Insert in (n)
+o Find in (n)
+o Remove (n)
+• Hash tables (before)
+• Search trees
+Jiacheng Li, Ph.D. 4
+
+-- 4 of 50 --
+
+Binary Search Trees
+• If node X is in left subtree of node Y,
+then X.data ≤ Y.data
+• If node Z is in right subtree of node Y,
+then Z.data  Y.data
+• Note: inorder traversal
+yields ascending order
+57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68
+Jiacheng Li, Ph.D. 5
+
+-- 5 of 50 --
+
+BST Code
+class Node {
+ElementType data;
+Node left, right;
+Node(ElementType x) {
+data = x;
+left = null;
+right = null;
+}
+}
+class BinarySearchTree {
+Node root;
+BinarySearchTree() {
+root = null;
+}
+Jiacheng Li, Ph.D. 6
+
+-- 6 of 50 --
+
+BST Code – find()
+boolean find(ElementType x) {
+return find(x, root); // Wrapper function
+}
+boolean find(ElementType x, Node p) {
+if (p == null) return false; // base case
+if (x == p.data) return true; // base case
+if (x < p.data) return find(x, p.left);
+/*if (x > p.data)*/return find(x, p.right);
+}
+• Remember:
+o All nodes to the left are less than the current.
+o All nodes to the right are greater than the current.
+Jiacheng Li, Ph.D. 7
+
+-- 7 of 50 --
+
+find() – A High Level View
+boolean find(ElementType x, Node p) {
+if (p == null) return false;
+if (x == p.data) return true;
+if (x < p.data) return find(x, p.left);
+/*if (x > p.data)*/return find(x, p.right);
+}
+• Base cases
+1. The current “root” is the item – stop
+2. The current “root” is null – no items left
+• Recursive cases
+o Divide the problem into subproblems
+of the same type
+1. Look left if the item is smaller
+2. Look right if the item is bigger
+o Solve the subtree (current “root”)
+the exact same as the main tree (real root)
+28
+15 40
+36	9 52
+45
+57
+71 94
+83
+77	62 100
+68
+Jiacheng Li, Ph.D. 8
+
+-- 8 of 50 --
+
+find(45)
+boolean find(ElementType x, Node p) {
+if (p == null) return false;
+if (x == p.data) return true;
+if (x < p.data) return find(x, p.left);
+/*if (x > p.data)*/return find(x, p.right);
+}
+57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68
+→ true
+Jiacheng Li, Ph.D. 9
+
+-- 9 of 50 --
+
+find(93)
+boolean find(ElementType x, Node p) {
+if (p == null) return false;
+if (x == p.data) return true;
+if (x < p.data) return find(x, p.left);
+/*if (x > p.data)*/return find(x, p.right);
+}
+57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68
+→ false
+Jiacheng Li, Ph.D. 10
+
+-- 10 of 50 --
+
+BST Code – insert()
+void insert(ElementType x) {
+root = insert(x, root);
+}
+Node insert(ElementType x, Node p) {
+if (p == null) // end of tree
+return new Node(x); // place new node
+if (x < p.data) // go left
+p.left = insert(x, p.left);
+else if (x > p.data) // go right
+p.right = insert(x, p.right);
+else // if (x == p.data)
+throw exception(“Duplicate key”);
+return p;
+} Jiacheng Li, Ph.D. 11
+
+-- 11 of 50 --
+
+insert(13)
+Node insert(ElementType x, Node p) {
+if (p == null) return new Node(x); // end of tree
+if (x < p.data) p.left = insert(x, p.left);
+else if (x > p.data) p.right = insert(x, p.right);
+else throw exception(“Duplicate key”);
+return p;
+} 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+Jiacheng Li, Ph.D. 12
+
+-- 12 of 50 --
+
+insert(11)
+Node insert(ElementType x, Node p) {
+if (p == null) return new Node(x);
+if (x < p.data) p.left = insert(x, p.left);
+else if (x > p.data) p.right = insert(x, p.right);
+else throw exception(“Duplicate key”);
+return p;
+} 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+Jiacheng Li, Ph.D. 13
+
+-- 13 of 50 --
+
+insert(55)
+Node insert(ElementType x, Node p) {
+if (p == null) return new Node(x);
+if (x < p.data) p.left = insert(x, p.left);
+else if (x > p.data) p.right = insert(x, p.right);
+else throw exception(“Duplicate key”);
+return p;
+} 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+55
+Jiacheng Li, Ph.D. 14
+
+-- 14 of 50 --
+
+insert(48)
+Node insert(ElementType x, Node p) {
+if (p == null) return new Node(x);
+if (x < p.data) p.left = insert(x, p.left);
+else if (x > p.data) p.right = insert(x, p.right);
+else throw exception(“Duplicate key”);
+return p;
+} 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+55
+48
+Jiacheng Li, Ph.D. 15
+
+-- 15 of 50 --
+
+insert(60)
+Node insert(ElementType x, Node p) {
+if (p == null) return new Node(x);
+if (x < p.data) p.left = insert(x, p.left);
+else if (x > p.data) p.right = insert(x, p.right);
+else throw exception(“Duplicate key”);
+return p;
+} 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+55
+48
+60
+Jiacheng Li, Ph.D. 16
+
+-- 16 of 50 --
+
+insert(65)
+Node insert(ElementType x, Node p) {
+if (p == null) return new Node(x);
+if (x < p.data) p.left = insert(x, p.left);
+else if (x > p.data) p.right = insert(x, p.right);
+else throw exception(“Duplicate key”);
+return p;
+} 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+55
+48
+60
+65
+Jiacheng Li, Ph.D. 17
+
+-- 17 of 50 --
+
+insert(96)
+Node insert(ElementType x, Node p) {
+if (p == null) return new Node(x);
+if (x < p.data) p.left = insert(x, p.left);
+else if (x > p.data) p.right = insert(x, p.right);
+else throw exception(“Duplicate key”);
+return p;
+} 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+55
+48
+60
+65
+96
+Jiacheng Li, Ph.D. 18
+
+-- 18 of 50 --
+
+insert(98)
+Node insert(ElementType x, Node p) {
+if (p == null) return new Node(x);
+if (x < p.data) p.left = insert(x, p.left);
+else if (x > p.data) p.right = insert(x, p.right);
+else throw exception(“Duplicate key”);
+return p;
+} 57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+55
+48
+60
+65
+96
+98
+Jiacheng Li, Ph.D. 19
+
+-- 19 of 50 --
+
+BST Code – remove() [successor]
+void remove(ElementType x) {
+root = remove(x, root);
+}
+Node remove(ElementType x, Node p) {
+if (p == null) // search for x, end of tree
+throw exception(“Key not found”);
+if (x < p.data) // search for x, search left subtree
+p.left = remove(x, p.left);
+else if (x > p.data) // search for x, search right subtree
+p.right = remove(x, p.right);
+else if (p.right == null) // found x, node has the left (or no) child
+p = p.left; // “slide” the subtree (or null) up
+else if (p.left == null) // found x, node has one child, the right
+p = p.right; // “slide” the subtree up
+else { // found x, node has two children
+p.data = findMin(p.right); // find replacement (successor of x)
+p.right = remove(p.data, p.right); // remove old replacement node
+}
+return p; // set the parent’s child
+}
+ElementType findMin(Node p) {
+if (p.left == null) return p.data;
+return findMin(p.left);
+}
+} Jiacheng Li, Ph.D. 20
+
+-- 20 of 50 --
+
+BST Code – remove() [predecessor]
+void remove(ElementType x) {
+root = remove(x, root);
+}
+Node remove(ElementType x, Node p) {
+if (p == null)
+throw exception(“Key not found”);
+if (x < p.data)
+p.left = remove(x, p.left);
+else if (x > p.data)
+p.right = remove(x, p.right);
+else if (p.right == null)
+p = p.left;
+else if (p.left == null)
+p = p.right;
+else { // found x, node has two children
+p.data = findMax(p.left); // find replacement (predecessor of x)
+p.left = remove(p.data, p.left); // remove old replacement node
+}
+return p;
+}
+ElementType findMax(Node p) {
+if (p.right == null) return p.data;
+return findMax(p.right);
+}
+} Jiacheng Li, Ph.D. 21
+
+-- 21 of 50 --
+
+remove(77) – The Search
+if (p == null) // search for x, end of tree
+throw exception(“Key not found”);
+if (x < p.data) // search for x, search left subtree
+p.left = remove(x, p.left);
+else if (x > p.data) // search for x, search right subtree
+p.right = remove(x, p.right);
+57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+55
+48
+60
+65
+96
+98
+Jiacheng Li, Ph.D. 22
+
+-- 22 of 50 --
+
+remove(77) – No Children,
+else if (p.right == null) // found x, node has the left (or no) child
+p = p.left; // “slide” the subtree (or null) up
+else if (p.left == null)
+p = p.right;
+…
+return p; // set the parent’s child
+57
+28
+15 40 71 94
+83
+36 77	9 52 62 100
+45 68	13
+11
+55
+48
+60
+65
+96
+98
+Chop!
+Jiacheng Li, Ph.D. 23
+
+-- 23 of 50 --
+
+remove(15) – The Search
+if (p == null) // search for x, end of tree
+throw exception(“Key not found”);
+if (x < p.data) // search for x, search left subtree
+p.left = remove(x, p.left);
+else if (x > p.data) // search for x, search right subtree
+p.right = remove(x, p.right);
+57
+28
+15 40 71 94
+83
+36	9 52 62 100
+45 68	13
+11
+55
+48
+60
+65
+96
+98
+Jiacheng Li, Ph.D. 24
+
+-- 24 of 50 --
+
+remove(15) – Left Child,
+else if (p.right == null) // found x, node has the left (or no) child
+p = p.left; // “slide” the subtree (or null) up
+else if (p.left == null)
+p = p.right;
+…
+return p; // set the parent’s child
+57
+28
+15 40 71 94
+83
+36	9 52 62 100
+45 68	13
+11
+55
+48
+60
+65
+96
+98
+Slide Up!
+Jiacheng Li, Ph.D. 25
+
+-- 25 of 50 --
+
+remove(15) – Left Child,
+else if (p.right == null) // found x, node has the left (or no) child
+p = p.left; // “slide” the subtree (or null) up
+else if (p.left == null)
+p = p.right;
+…
+return p; // set the parent’s child
+57
+28
+40 71 94
+83
+36 52 62 100
+45 68	55
+48
+60
+65
+96
+98
+Slide Up!
+9
+13
+11
+Jiacheng Li, Ph.D. 26
+
+-- 26 of 50 --
+
+remove(94) – The Search
+if (p == null) // search for x, end of tree
+throw exception(“Key not found”);
+if (x < p.data) // search for x, search left subtree
+p.left = remove(x, p.left);
+else if (x > p.data) // search for x, search right subtree
+p.right = remove(x, p.right);
+57
+28
+40 71 94
+83
+36 52 62 100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 27
+
+-- 27 of 50 --
+
+remove(94) – Right Child,
+else if (p.right == null)
+p = p.left;
+else if (p.left == null) // found x, node has one child, the right
+p = p.right; // “slide” the subtree up
+…
+return p; // set the parent’s child
+57
+28
+40 71 94
+83
+36 52 62 100
+45 68	55
+48
+60
+65
+96
+98
+Slide Up!
+9
+13
+11
+Jiacheng Li, Ph.D. 28
+
+-- 28 of 50 --
+
+remove(94) – Right Child,
+else if (p.right == null)
+p = p.left;
+else if (p.left == null) // found x, node has one child, the right
+p = p.right; // “slide” the subtree up
+…
+return p; // set the parent’s child
+57
+28
+40 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+Slide Up!
+9
+13
+11
+Jiacheng Li, Ph.D. 29
+
+-- 29 of 50 --
+
+remove(40) – The Search
+if (p == null) // search for x, end of tree
+throw exception(“Key not found”);
+if (x < p.data) // search for x, search left subtree
+p.left = remove(x, p.left);
+else if (x > p.data) // search for x, search right subtree
+p.right = remove(x, p.right);
+57
+28
+40 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 30
+
+-- 30 of 50 --
+
+remove(40) – Note
+• Inorder: 9 11 13 28 36 40 45 48 52 55 57 60 62 65 68 71 83 96 98 100
+• Successor: Smallest (leftmost) element of the right subtree
+• Predecessor: Largest (rightmost) element of the left subtree
+57
+28
+40 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 31
+
+-- 31 of 50 --
+
+remove(40) – Children [Successor]
+else { // found x, node has two children
+p.data = findMin(p.right); // find replacement (successor of x)
+p.right = remove(p.data, p.right); // remove old replacement node
+}
+…
+return p; // set the parent’s child
+57
+28
+40 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 32
+
+-- 32 of 50 --
+
+remove(40) – Children [Successor]
+ElementType findMin(Node p) {
+if (p.left == null) return p.data;
+return findMin(p.left);
+}
+57
+28
+40 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 33
+
+-- 33 of 50 --
+
+remove(40) – Children [Successor]
+else { // found x, node has two children
+p.data = findMin(p.right); // find replacement (successor of x)
+p.right = remove(p.data, p.right); // remove old replacement node
+}
+…
+return p; // set the parent’s child
+57
+28
+45 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 34
+
+-- 34 of 50 --
+
+remove(40) – Children [Successor]
+else { // found x, node has two children
+p.data = findMin(p.right); // find replacement (successor of x)
+p.right = remove(p.data, p.right); // remove old replacement node
+}
+…
+return p; // set the parent’s child
+57
+28
+45 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 35
+
+-- 35 of 50 --
+
+remove(45) – The Search
+if (p == null) // search for x, end of tree
+throw exception(“Key not found”);
+if (x < p.data) // search for x, search left subtree
+p.left = remove(x, p.left);
+else if (x > p.data) // search for x, search right subtree
+p.right = remove(x, p.right);
+57
+28
+45 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 36
+
+-- 36 of 50 --
+
+remove(45) – Right Child,
+else if (p.right == null)
+p = p.left;
+else if (p.left == null) // found x, node has one child, the right
+p = p.right; // “slide” the subtree up
+…
+return p; // set the parent’s child
+57
+28
+45 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Slide Up!
+Jiacheng Li, Ph.D. 37
+
+-- 37 of 50 --
+
+remove(45) – Right Child,
+else if (p.right == null)
+p = p.left;
+else if (p.left == null) // found x, node has one child, the right
+p = p.right; // “slide” the subtree up
+…
+return p; // set the parent’s child
+57
+28
+45 71
+83
+36 52 62
+100
+48 68	55 60
+65
+96
+98
+9
+13
+11
+Slide Up!
+Jiacheng Li, Ph.D. 38
+
+-- 38 of 50 --
+
+remove(40) – Finished [Successor]
+else { // found x, node has two children
+p.data = findMin(p.right); // find replacement (successor of x)
+p.right = remove(p.data, p.right); // remove old replacement node
+}
+…
+return p; // set the parent’s child
+57
+28
+45 71
+83
+36 52 62
+100
+48 68	55 60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 39
+
+-- 39 of 50 --
+
+remove(40) – Children [Predecessor]
+else { // found x, node has two children
+p.data = findMax(p.left); // find replacement (predecessor of x)
+p.left = remove(p.data, p.left); // remove old replacement node
+}
+…
+return p; // set the parent’s child
+57
+28
+40 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 40
+
+-- 40 of 50 --
+
+remove(40) – Children [Predecessor]
+ElementType findMax(Node p) {
+if (p.right == null) return p.data;
+return findMax(p.right);
+}
+57
+28
+40 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 41
+
+-- 41 of 50 --
+
+remove(40) – Children [Predecessor]
+else { // found x, node has two children
+p.data = findMax(p.left); // find replacement (predecessor of x)
+p.left = remove(p.data, p.left); // remove old replacement node
+}
+…
+return p; // set the parent’s child
+57
+28
+36 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 42
+
+-- 42 of 50 --
+
+remove(40) – Children [Predecessor]
+else { // found x, node has two children
+p.data = findMax(p.left); // find replacement (predecessor of x)
+p.left = remove(p.data, p.left); // remove old replacement node
+}
+…
+return p; // set the parent’s child
+57
+28
+36 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 43
+
+-- 43 of 50 --
+
+remove(36) – The Search
+if (p == null) // search for x, end of tree
+throw exception(“Key not found”);
+if (x < p.data) // search for x, search left subtree
+p.left = remove(x, p.left);
+else if (x > p.data) // search for x, search right subtree
+p.right = remove(x, p.right);
+57
+28
+36 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 44
+
+-- 44 of 50 --
+
+remove(36) – No Children,
+else if (p.right == null) // found x, node has the left (or no) child
+p = p.left; // “slide” the subtree (or null) up
+else if (p.left == null)
+p = p.right;
+…
+return p; // set the parent’s child
+57
+28
+36 71
+83
+36 52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Chop!
+Jiacheng Li, Ph.D. 45
+
+-- 45 of 50 --
+
+remove(40) – Finished [Predecessor]
+else { // found x, node has two children
+p.data = findMax(p.left); // find replacement (predecessor of x)
+p.left = remove(p.data, p.left); // remove old replacement node
+}
+…
+return p; // set the parent’s child
+57
+28
+36 71
+83
+52 62
+100
+45 68	55
+48
+60
+65
+96
+98
+9
+13
+11
+Jiacheng Li, Ph.D. 46
+
+-- 46 of 50 --
+
+Analysis
+• Each BST operation (find, insert, remove) runs in
+time (h), where h = height of tree
+• Worst-case time: (?)
+o If keys are inserted in ascending order or descending
+order
+o Example: insert values 1 to n 1
+2
+…
+n-1
+n
+Jiacheng Li, Ph.D. 47
+
+-- 47 of 50 --
+
+Analysis
+• Each BST operation (find, insert, remove) runs in
+time (h), where h = height of tree
+• Worst-case time: (h) = (n)
+o If keys are inserted in ascending order or descending
+order
+o Example: insert values 1 to n
+• Expected or average-case time: (h) = (lg n)
+o If keys are inserted and removed in random order
+• Best-case time: (1)
+o When there is zero or one items in the tree
+Jiacheng Li, Ph.D. 48
+
+-- 48 of 50 --
+
+Analysis (cont.)
+• Note: There exist other kinds of search trees such
+that the height and the running times are worst-
+case (lg n), but these are topics for a later course.
+Jiacheng Li, Ph.D. 49
+
+-- 49 of 50 --
+
+Questions?
+Jiacheng Li, Ph.D. 50
+
+-- 50 of 50 --
+
