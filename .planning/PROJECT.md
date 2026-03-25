@@ -12,13 +12,21 @@ A student who uses this app for any amount of time should leave with a measurabl
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] User can authenticate with Google OAuth and have their progress persisted across sessions *(Validated in Phase 01: foundation)*
+- [x] App covers all four topic areas: Huffman codes, N-ary trees, Red-Black trees, B-Trees *(Validated in Phase 01: foundation)*
+- [x] Each topic has a structured lesson: short reading → pseudocode → C++ code → examples *(Validated in Phase 01: foundation)*
+- [x] Content is seeded from CS201-Exam2 PDF source material *(Validated in Phase 01: foundation)*
+- [x] App is deployed-ready with Neon Postgres backend and Vercel-compatible stack *(Validated in Phase 01: foundation)*
 
 ### Active
 
-- [ ] User can authenticate with Google OAuth and have their progress persisted across sessions
-- [ ] App covers all four topic areas: Huffman codes, N-ary trees, Red-Black trees, B-Trees
-- [ ] Each topic has a structured lesson: short reading → pseudocode → C++ code → examples
+- [ ] Interactive step-through animations show algorithms executing (insert, delete, search, traversal, encode/decode)
+- [ ] User-driven tracing exercises let students predict next steps and get immediate feedback
+- [ ] Flashcard decks exist for each topic area
+- [ ] Practice quizzes exist in each exam-relevant format: MC, fill-in-blank, tracing, debugging, short answer
+- [ ] Spaced repetition surfaces weak topics and missed questions more frequently
+- [ ] User dashboard shows progress, quiz scores, topic coverage, and recommended next steps
+- [ ] AI-assisted generation of quiz variations and flashcard alternatives from PDF content
 - [ ] Interactive step-through animations show algorithms executing (insert, delete, search, traversal, encode/decode)
 - [ ] User-driven tracing exercises let students predict next steps and get immediate feedback
 - [ ] Flashcard decks exist for each topic area
@@ -63,9 +71,9 @@ A student who uses this app for any amount of time should leave with a measurabl
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Google OAuth only | Fastest login path, zero friction for students | — Pending |
-| Neon Postgres (not SQLite/local) | User progress must persist cross-session, Vercel-compatible | — Pending |
-| Content seeded from PDFs at build time | Reliability over flexibility — no runtime PDF parsing complexity | — Pending |
+| Google OAuth only | Fastest login path, zero friction for students | ✓ Working end-to-end |
+| Neon Postgres (not SQLite/local) | User progress must persist cross-session, Vercel-compatible | ✓ Connected, 11 tables live |
+| Content seeded from PDFs at build time | Reliability over flexibility — no runtime PDF parsing complexity | ✓ 4 topics, 11 lessons seeded |
 | Spaced repetition over simple tracking | Exam is high-stakes; surfacing weak areas is more valuable than just tracking | — Pending |
 | Both animations + user-driven tracing | Animations for learning, tracing for practice — mirrors exam format directly | — Pending |
 
@@ -87,4 +95,10 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-24 after initialization*
+## Current State
+
+Phase 01 (foundation) complete — full stack is live. Next.js 16 + Better Auth + Neon Postgres running. Google OAuth works. 4 topics with 11 lessons seeded. Dashboard and lesson reader UI verified end-to-end.
+
+Phase 02 (visualizations) is next — algorithm step-through animations.
+
+*Last updated: 2026-03-25 after Phase 01 completion*
