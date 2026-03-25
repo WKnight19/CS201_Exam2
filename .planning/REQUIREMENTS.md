@@ -1,0 +1,151 @@
+# Requirements: CS201 Exam 2 Study App
+
+**Defined:** 2026-03-24
+**Core Value:** A student who uses this app for any amount of time leaves with a measurably stronger grasp of the exam topics — via targeted practice that mirrors the actual exam format.
+
+---
+
+## v1 Requirements
+
+### Authentication
+
+- [ ] **AUTH-01**: User can sign in with Google OAuth in one click with no additional fields
+- [ ] **AUTH-02**: User session persists across browser refresh and new tabs
+- [ ] **AUTH-03**: User can sign out from any page
+- [ ] **AUTH-04**: User's progress and preferences are tied to their Google account and persist across devices
+
+### Content
+
+- [ ] **CONT-01**: User can read a structured lesson for each topic (Huffman codes, N-ary trees, Red-Black trees, B-Trees) with concept explanation, pseudocode, and C++ implementation
+- [ ] **CONT-02**: Huffman lesson covers: greedy algorithm, encoding a string, decoding a bitstring
+- [ ] **CONT-03**: N-ary trees lesson covers: preorder traversal, postorder traversal, level-order traversal, and traversal algorithm complexity (Big-O)
+- [ ] **CONT-04**: Red-Black trees lesson covers: search algorithm, insert algorithm (with rotations and recoloring), delete algorithm (with double-black fixup)
+- [ ] **CONT-05**: B-Trees lesson covers: search algorithm, insert algorithm (with node splits), delete algorithm (with node merges and redistribution)
+- [ ] **CONT-06**: All content is seeded from CS201-Exam2 PDF source material (parsed at build time, stored in DB)
+
+### Visualizations
+
+- [ ] **VIZ-01**: User can watch a step-through animation of Huffman tree construction (greedy bottom-up merge)
+- [ ] **VIZ-02**: User can watch step-through animations of N-ary tree traversals: preorder, postorder, level-order (with persistent visit-order highlighting)
+- [ ] **VIZ-03**: User can watch step-through animations of Red-Black tree operations: insert (with rotations), delete (with fixup), search
+- [ ] **VIZ-04**: User can watch step-through animations of B-Tree operations: insert (with splits), delete (with merges/redistribution), search
+- [ ] **VIZ-05**: User can navigate animations step-by-step (forward and backward) and pause at any step
+- [ ] **VIZ-06**: Animation steps are pre-computed as immutable state snapshots (not derived from mutable animated state)
+
+### Practice — Quizzes
+
+- [ ] **QUIZ-01**: User can answer multiple choice questions for each topic with randomized answer ordering and immediate right/wrong feedback
+- [ ] **QUIZ-02**: User can answer fill-in-the-blank questions for each topic with immediate feedback (exact match or regex validation)
+- [ ] **QUIZ-03**: User can complete tracing exercises: given a partially-executed tree operation, predict the next step's tree state (click/select the correct node action or resulting state)
+- [ ] **QUIZ-04**: User can complete debugging exercises: given a trace with one incorrect step, identify the error
+- [ ] **QUIZ-05**: User can answer short-answer prompts; after submitting, a rubric is revealed for self-grading
+- [ ] **QUIZ-06**: All question types are available for all four topic areas
+- [ ] **QUIZ-07**: User answers are recorded per question per user (right/wrong, timestamp) for progress tracking
+
+### Practice — Flashcards
+
+- [ ] **CARD-01**: User can flip through flashcard decks for each topic (term/concept on front, definition/explanation on back)
+- [ ] **CARD-02**: User can mark a flashcard as "known" or "needs review"
+- [ ] **CARD-03**: Flashcard decks are pre-seeded from PDF content (not user-created)
+
+### Progress & Spaced Repetition
+
+- [ ] **PROG-01**: User can view a dashboard showing per-topic coverage (% questions answered, % correct) across all question types
+- [ ] **PROG-02**: Dashboard surfaces a "recommended next" action based on weakest topic/question-type combination
+- [ ] **PROG-03**: Spaced repetition (FSRS algorithm via ts-fsrs) schedules which questions and flashcards to surface based on answer history
+- [ ] **PROG-04**: Topics and questions with poor performance are surfaced more frequently than well-known ones
+
+### Infrastructure
+
+- [ ] **INFRA-01**: App is deployed on Vercel as a Next.js 16 App Router application
+- [ ] **INFRA-02**: User data and content are stored in Neon Postgres accessed via Drizzle ORM
+- [ ] **INFRA-03**: Content seeding script reads source PDFs and populates DB with lessons, questions, and flashcards for all four topics
+- [ ] **INFRA-04**: All user-data mutations are authenticated via Better Auth server-side guards (not middleware-only)
+
+---
+
+## v2 Requirements
+
+### AI-Assisted Content
+
+- **AI-01**: AI-generated quiz variations from PDF content expand the question pool at build time (LLM generates novel MC/FIB questions; human-reviewed before deploy)
+- **AI-02**: Question variations prevent memorization of fixed question set across study sessions
+
+### Advanced Practice
+
+- **ADV-01**: Huffman encode/decode round-trip interactive practice (encode a string → produce bitstring; decode bitstring + tree → produce string)
+- **ADV-02**: B-Tree degree parameterization — students can practice with different degrees (t=2, t=3) to build intuition about split/merge thresholds
+- **ADV-03**: Animation-to-tracing progression state machine (UNSEEN → WATCHED → TRACED → PREDICTED per user × topic)
+
+### UX Enhancements
+
+- **UX-01**: Timed challenge mode for practice sessions
+- **UX-02**: Export progress summary (PDF or shareable link)
+- **UX-03**: Mobile-optimized tap targets for tree interaction in tracing exercises
+
+---
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| Email/password or magic link auth | Google OAuth only — no additional auth complexity |
+| User-created flashcard decks | App value is curated exam-targeted content; blank decks shift work back to student |
+| Community / social features | Zero benefit for solo exam prep; explicitly excluded in PROJECT.md |
+| LMS integration (Canvas, Blackboard) | Not needed; direct URL is sufficient |
+| Mobile native app | Mobile-responsive web is sufficient |
+| Code execution / REPL | Exam is pseudocode + tracing, not code writing; no exam-prep payoff |
+| Gamification (streaks, badges, points) | Exam is days away; gamification mechanics require weeks to pay off |
+| Video lectures | Content density vs. time is bad for days-to-exam; short text + animations are higher-value |
+| Coverage of topics outside Exam 2 | Scoped to Huffman, N-ary, RB, B-Trees only |
+| Real-time multiplayer / study groups | Complexity without exam-prep value |
+
+---
+
+## Traceability
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| CONT-01 | Phase 1 | Pending |
+| CONT-02 | Phase 1 | Pending |
+| CONT-03 | Phase 1 | Pending |
+| CONT-04 | Phase 1 | Pending |
+| CONT-05 | Phase 1 | Pending |
+| CONT-06 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| VIZ-01 | TBD | Pending |
+| VIZ-02 | TBD | Pending |
+| VIZ-03 | TBD | Pending |
+| VIZ-04 | TBD | Pending |
+| VIZ-05 | TBD | Pending |
+| VIZ-06 | TBD | Pending |
+| QUIZ-01 | TBD | Pending |
+| QUIZ-02 | TBD | Pending |
+| QUIZ-03 | TBD | Pending |
+| QUIZ-04 | TBD | Pending |
+| QUIZ-05 | TBD | Pending |
+| QUIZ-06 | TBD | Pending |
+| QUIZ-07 | TBD | Pending |
+| CARD-01 | TBD | Pending |
+| CARD-02 | TBD | Pending |
+| CARD-03 | TBD | Pending |
+| PROG-01 | TBD | Pending |
+| PROG-02 | TBD | Pending |
+| PROG-03 | TBD | Pending |
+| PROG-04 | TBD | Pending |
+
+**Coverage:**
+- v1 requirements: 33 total
+- Mapped to phases: 14
+- Unmapped (TBD — roadmapper will assign): 19 ⚠️
+
+---
+*Requirements defined: 2026-03-24*
+*Last updated: 2026-03-24 after initial definition*
