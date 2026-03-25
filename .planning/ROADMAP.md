@@ -29,7 +29,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. User can sign out from any page and be redirected to the sign-in screen
   4. User can navigate to any of the four topic lesson pages and read concept explanation, pseudocode, and C++ implementation
   5. All four topic lessons (Huffman, N-ary, RB, B-Trees) have content seeded from the PDF source material and are readable without placeholder text
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffold, DB schema, Drizzle + Neon connection, shadcn/ui, Vitest
+- [ ] 01-02-PLAN.md — Better Auth + Google OAuth, sign-in page, middleware, requireAuth
+- [ ] 01-03-PLAN.md — PDF content pipeline, structured lesson JSON, DB seed script
+- [ ] 01-04-PLAN.md — Dashboard UI, topic pages, lesson content renderer, nav bar
+
 **UI hint**: yes
 
 ### Phase 2: Visualizations
@@ -76,7 +83,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/4 | Planning complete | - |
 | 2. Visualizations | 0/TBD | Not started | - |
 | 3. Quiz Engine & Flashcards | 0/TBD | Not started | - |
 | 4. Progress & Spaced Repetition | 0/TBD | Not started | - |
