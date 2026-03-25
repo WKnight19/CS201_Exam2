@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Completed 01-02-PLAN.md — Better Auth with Google OAuth
-last_updated: "2026-03-25T04:27:17.596Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 01-03-PLAN.md — content pipeline complete, 4 topics and 11 lessons seeded to Neon
+last_updated: "2026-03-25T04:33:51.387Z"
 progress:
   total_phases: 4
   completed_phases: 0
@@ -49,6 +49,7 @@ Plan: 4 of 4
 | Phase 01 P01 | 12 | 2 tasks | 14 files |
 | Phase 01-foundation P02 | 13 | 1 tasks | 7 files |
 | Phase 01-foundation P02 | 35 | 2 tasks | 7 files |
+| Phase 01-foundation P03 | 25 | 3 tasks | 17 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: Middleware uses getSessionCookie() (cookie check only, no DB) — UX redirect only, not security gate per CVE-2025-29927 class
 - [Phase 01-foundation]: requireAuth() uses auth.api.getSession() with forwarded headers — full DB validation per INFRA-04
 - [Phase 01-foundation]: Better Auth tables added manually to schema.ts to avoid CLI overwriting existing app tables
+- [Phase 01-foundation]: Clear-then-reinsert chosen over onConflictDoNothing for seed script — static content, simpler, no unique constraint needed on lessons
+- [Phase 01-foundation]: type:module added to package.json — required for node --experimental-strip-types to run ESM scripts cleanly
 
 ### Pending Todos
 
@@ -85,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T04:27:17.585Z
-Stopped at: Completed 01-02-PLAN.md — Better Auth with Google OAuth
+Last session: 2026-03-25T04:33:51.374Z
+Stopped at: Completed 01-03-PLAN.md — content pipeline complete, 4 topics and 11 lessons seeded to Neon
 Resume file: None

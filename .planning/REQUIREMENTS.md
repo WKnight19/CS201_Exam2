@@ -17,11 +17,11 @@
 ### Content
 
 - [ ] **CONT-01**: User can read a structured lesson for each topic (Huffman codes, N-ary trees, Red-Black trees, B-Trees) with concept explanation, pseudocode, and C++ implementation
-- [ ] **CONT-02**: Huffman lesson covers: greedy algorithm, encoding a string, decoding a bitstring
-- [ ] **CONT-03**: N-ary trees lesson covers: preorder traversal, postorder traversal, level-order traversal, and traversal algorithm complexity (Big-O)
-- [ ] **CONT-04**: Red-Black trees lesson covers: search algorithm, insert algorithm (with rotations and recoloring), delete algorithm (with double-black fixup)
-- [ ] **CONT-05**: B-Trees lesson covers: search algorithm, insert algorithm (with node splits), delete algorithm (with node merges and redistribution)
-- [ ] **CONT-06**: All content is seeded from CS201-Exam2 PDF source material (parsed at build time, stored in DB)
+- [x] **CONT-02**: Huffman lesson covers: greedy algorithm, encoding a string, decoding a bitstring
+- [x] **CONT-03**: N-ary trees lesson covers: preorder traversal, postorder traversal, level-order traversal, and traversal algorithm complexity (Big-O)
+- [x] **CONT-04**: Red-Black trees lesson covers: search algorithm, insert algorithm (with rotations and recoloring), delete algorithm (with double-black fixup)
+- [x] **CONT-05**: B-Trees lesson covers: search algorithm, insert algorithm (with node splits), delete algorithm (with node merges and redistribution)
+- [x] **CONT-06**: All content is seeded from CS201-Exam2 PDF source material (parsed at build time, stored in DB)
 
 ### Visualizations
 
@@ -59,7 +59,7 @@
 
 - [x] **INFRA-01**: App is deployed on Vercel as a Next.js 16 App Router application
 - [x] **INFRA-02**: User data and content are stored in Neon Postgres accessed via Drizzle ORM
-- [ ] **INFRA-03**: Content seeding script reads source PDFs and populates DB with lessons, questions, and flashcards for all four topics
+- [x] **INFRA-03**: Content seeding script reads source PDFs and populates DB with lessons, questions, and flashcards for all four topics
 - [x] **INFRA-04**: All user-data mutations are authenticated via Better Auth server-side guards (not middleware-only)
 
 ---
@@ -111,14 +111,14 @@
 | AUTH-03 | Phase 1 | Complete |
 | AUTH-04 | Phase 1 | Complete |
 | CONT-01 | Phase 1 | Pending |
-| CONT-02 | Phase 1 | Pending |
-| CONT-03 | Phase 1 | Pending |
-| CONT-04 | Phase 1 | Pending |
-| CONT-05 | Phase 1 | Pending |
-| CONT-06 | Phase 1 | Pending |
+| CONT-02 | Phase 1 | Complete |
+| CONT-03 | Phase 1 | Complete |
+| CONT-04 | Phase 1 | Complete |
+| CONT-05 | Phase 1 | Complete |
+| CONT-06 | Phase 1 | Complete |
 | INFRA-01 | Phase 1 | Complete |
 | INFRA-02 | Phase 1 | Complete |
-| INFRA-03 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Complete |
 | INFRA-04 | Phase 1 | Complete |
 | VIZ-01 | Phase 2 | Pending |
 | VIZ-02 | Phase 2 | Pending |
