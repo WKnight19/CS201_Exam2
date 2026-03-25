@@ -3,7 +3,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
-import { topics, lessons } from "../src/lib/db/schema";
+import { topics, lessons } from "../src/lib/db/schema.ts";
 
 // --- Types for structured JSON files ---
 
