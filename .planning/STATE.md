@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Executing Phase 01
-stopped_at: Phase 1 UI-SPEC approved
-last_updated: "2026-03-25T03:27:07.785Z"
+status: Ready to execute
+stopped_at: "Completed 01-01-PLAN.md (pending: user must set DATABASE_URL and run pnpm db:push)"
+last_updated: "2026-03-25T03:41:13.254Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 4
-  completed_plans: 0
+  completed_plans: 1
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-24)
 ## Current Position
 
 Phase: 01 (foundation) — EXECUTING
-Plan: 1 of 4
+Plan: 2 of 4
 
 ## Performance Metrics
 
@@ -46,6 +46,7 @@ Plan: 1 of 4
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01 P01 | 12 | 2 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -58,6 +59,9 @@ Recent decisions affecting current work:
 - [Pre-Phase 1]: Use Better Auth (not NextAuth v5) — NextAuth v5 is deprecated; Better Auth is the recommended successor
 - [Pre-Phase 1]: Content seeded from PDFs at build time — reliability over runtime parsing complexity
 - [Pre-Phase 1]: Discriminated union question schema (multiple_choice | fill_blank | trace_step | short_answer) must be established in Phase 1 before any content is seeded
+- [Phase 01]: Node 24 required for Next.js 16 - system Node 18 incompatible; added .nvmrc pinned to 24
+- [Phase 01]: Better Auth userId is text not uuid - all FK columns use text('user_id')
+- [Phase 01]: drizzle-orm/neon-http driver chosen - stateless HTTP transport for Vercel serverless safety
 
 ### Pending Todos
 
@@ -72,6 +76,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T02:40:26.188Z
-Stopped at: Phase 1 UI-SPEC approved
-Resume file: .planning/phases/01-foundation/01-UI-SPEC.md
+Last session: 2026-03-25T03:41:13.247Z
+Stopped at: Completed 01-01-PLAN.md (pending: user must set DATABASE_URL and run pnpm db:push)
+Resume file: None

@@ -57,8 +57,8 @@
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: App is deployed on Vercel as a Next.js 16 App Router application
-- [ ] **INFRA-02**: User data and content are stored in Neon Postgres accessed via Drizzle ORM
+- [x] **INFRA-01**: App is deployed on Vercel as a Next.js 16 App Router application
+- [x] **INFRA-02**: User data and content are stored in Neon Postgres accessed via Drizzle ORM
 - [ ] **INFRA-03**: Content seeding script reads source PDFs and populates DB with lessons, questions, and flashcards for all four topics
 - [ ] **INFRA-04**: All user-data mutations are authenticated via Better Auth server-side guards (not middleware-only)
 
@@ -116,8 +116,8 @@
 | CONT-04 | Phase 1 | Pending |
 | CONT-05 | Phase 1 | Pending |
 | CONT-06 | Phase 1 | Pending |
-| INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
+| INFRA-01 | Phase 1 | Complete |
+| INFRA-02 | Phase 1 | Complete |
 | INFRA-03 | Phase 1 | Pending |
 | INFRA-04 | Phase 1 | Pending |
 | VIZ-01 | Phase 2 | Pending |
