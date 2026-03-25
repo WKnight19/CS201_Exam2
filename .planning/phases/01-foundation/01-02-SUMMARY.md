@@ -50,20 +50,20 @@ patterns-established:
 
 requirements-completed: [AUTH-01, AUTH-02, AUTH-03, AUTH-04, INFRA-04]
 
-duration: ~30min
+duration: ~35min
 completed: 2026-03-25
 ---
 
 # Phase 01 Plan 02: Better Auth with Google OAuth Summary
 
-**Better Auth 1.5.x Google OAuth with Drizzle adapter, dual-layer auth guard (middleware cookie check + server-side DB validation), sign-in page, and requireAuth() helper**
+**Better Auth 1.5.x Google OAuth with Drizzle adapter, dual-layer auth guard (middleware cookie check + server-side DB validation), sign-in page, and requireAuth() helper — verified end-to-end with live Google OAuth**
 
 ## Performance
 
-- **Duration:** ~30 min
+- **Duration:** ~35 min
 - **Started:** 2026-03-25T03:58:23Z
-- **Completed:** 2026-03-25T04:10:00Z
-- **Tasks:** 1 of 2 complete (Task 2 is a human-verification checkpoint)
+- **Completed:** 2026-03-25T04:30:00Z
+- **Tasks:** 2 of 2 complete
 - **Files modified:** 7
 
 ## Accomplishments
@@ -72,16 +72,16 @@ completed: 2026-03-25
 - Full Google OAuth flow wired: auth server instance → API catch-all route → browser client → sign-in page
 - Dual-layer route protection: middleware redirects unauthenticated users (cookie check, no DB) + requireAuth() validates sessions against DB (per INFRA-04)
 - `pnpm build` passes with all 5 routes: `/`, `/_not-found`, `/api/auth/[...all]`, `/sign-in`, plus middleware proxy
+- Google OAuth sign-in flow verified end-to-end in browser: sign-in, session persistence across refresh and new tabs, sign-out
 
 ## Task Commits
 
 Each task was committed atomically:
 
 1. **Task 1: Better Auth schema, auth instance, API route, client, middleware, sign-in page, requireAuth** - `d778010` (feat: phase 1 wave one finished)
+2. **Task 2: Verify Google OAuth sign-in flow end-to-end** - Human verification checkpoint — approved by user (no code commit required)
 
 Note: Task 1 was completed by the user prior to executor agent spawn. The executor verified all acceptance criteria against the committed code and confirmed `pnpm build` passes.
-
-**Plan metadata:** _(docs commit to follow after checkpoint resolution)_
 
 ## Files Created/Modified
 
@@ -117,6 +117,16 @@ Note: Task 1 was completed by the user prior to executor agent spawn. The execut
 **Total deviations:** 1 auto-fixed (Rule 1 — bug in pre-existing file blocking build)
 **Impact on plan:** Pre-existing TypeScript error in unrelated script blocked build verification. Fixed by parallel agent. No scope creep.
 
+## End-to-End Verification Results
+
+Task 2 human verification — all steps confirmed passing by user:
+
+- Navigation to `http://localhost:3000` redirected to `/sign-in` (AUTH-01)
+- "Sign in with Google" button completed OAuth and landed on dashboard (AUTH-01)
+- Session persisted across browser refresh (AUTH-02)
+- Session persisted in new tab (AUTH-02)
+- Sign-out cleared session and redirected to `/sign-in` (AUTH-03)
+
 ## Issues Encountered
 
 - `parse-pdfs.ts` was committed with incorrect `pdf-parse@2.x` API usage (named class import with `load()` private method). Build failed TypeScript check until fixed.
@@ -124,15 +134,11 @@ Note: Task 1 was completed by the user prior to executor agent spawn. The execut
 
 ## User Setup Required
 
-**External services require manual configuration before Task 2 (human-verify checkpoint):**
+**External services configured before Task 2 (human-verify checkpoint):**
 
-1. **Google Cloud Console**: Create OAuth 2.0 Client ID (Web application) with authorized redirect URI:
-   - `http://localhost:3000/api/auth/callback/google` (development)
-   - Add production Vercel URL when deployed
-2. **Environment variables** (`.env.local`): Confirm `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are set
-3. **BETTER_AUTH_SECRET**: Must be a real 32-char hex string — generate with `openssl rand -hex 32`
-
-All three are already set in `.env.local` per file inspection.
+1. **Google Cloud Console**: OAuth 2.0 Client ID (Web application) with authorized redirect URI `http://localhost:3000/api/auth/callback/google`
+2. **Environment variables** (`.env.local`): `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `BETTER_AUTH_SECRET` confirmed set
+3. **BETTER_AUTH_SECRET**: Real 32-char hex string generated via `openssl rand -hex 32`
 
 ## Next Phase Readiness
 
@@ -141,11 +147,21 @@ All three are already set in `.env.local` per file inspection.
 - Database has auth tables ready: user, session, account, verification in Neon
 - `requireAuth()` exported from `src/actions/auth.ts` — import and call in any protected Server Action
 
-**Checkpoint required:** Task 2 is human verification of the live Google OAuth flow (AUTH-01/02/03). Cannot be automated — requires browser interaction with Google's live OAuth servers and valid credentials.
-
 ## Known Stubs
 
-None — all auth plumbing is fully wired. Sign-in page connects to live Google OAuth. The checkpoint is for end-to-end verification, not because stubs exist.
+None — all auth plumbing is fully wired and verified against live Google OAuth.
+
+## Self-Check: PASSED
+
+- FOUND: `src/lib/auth.ts`
+- FOUND: `src/lib/auth-client.ts`
+- FOUND: `src/app/api/auth/[...all]/route.ts`
+- FOUND: `middleware.ts`
+- FOUND: `src/actions/auth.ts`
+- FOUND: `src/app/(auth)/sign-in/page.tsx`
+- FOUND: commit `d778010` (task commit)
+- `pnpm build` exits 0 with all routes generated
+- Task 2 human verification: APPROVED by user
 
 ---
 *Phase: 01-foundation*
