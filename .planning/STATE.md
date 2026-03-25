@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: "01-03-PLAN.md Task 2 checkpoint (human-verify: review raw PDF text and confirm proceed for structuring)"
-last_updated: "2026-03-25T04:08:33.074Z"
+stopped_at: "Checkpoint: 01-02 Task 2 — awaiting human verification of Google OAuth flow"
+last_updated: "2026-03-25T04:12:00.011Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 4
-  completed_plans: 2
+  completed_plans: 3
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-24)
 ## Current Position
 
 Phase: 01 (foundation) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 
 ## Performance Metrics
 
@@ -47,6 +47,7 @@ Plan: 2 of 4
 
 *Updated after each plan completion*
 | Phase 01 P01 | 12 | 2 tasks | 14 files |
+| Phase 01-foundation P02 | 13 | 1 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -63,6 +64,9 @@ Recent decisions affecting current work:
 - [Phase 01]: Better Auth userId is text not uuid - all FK columns use text('user_id')
 - [Phase 01]: drizzle-orm/neon-http driver chosen - stateless HTTP transport for Vercel serverless safety
 - [Phase 01]: pdf-parse@2.x uses PDFParse named class (not default function); import via namespace * as pdfParseModule; constructor takes { data: Uint8Array } in options object
+- [Phase 01-foundation]: Middleware uses getSessionCookie() (cookie check only, no DB) — UX redirect only, not security gate per CVE-2025-29927 class
+- [Phase 01-foundation]: requireAuth() uses auth.api.getSession() with forwarded headers — full DB validation per INFRA-04
+- [Phase 01-foundation]: Better Auth tables added manually to schema.ts to avoid CLI overwriting existing app tables
 
 ### Pending Todos
 
@@ -77,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T04:08:09.717Z
-Stopped at: 01-03-PLAN.md Task 2 checkpoint (human-verify: review raw PDF text and confirm proceed for structuring)
+Last session: 2026-03-25T04:11:59.998Z
+Stopped at: Checkpoint: 01-02 Task 2 — awaiting human verification of Google OAuth flow
 Resume file: None

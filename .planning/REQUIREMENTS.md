@@ -9,10 +9,10 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can sign in with Google OAuth in one click with no additional fields
-- [ ] **AUTH-02**: User session persists across browser refresh and new tabs
-- [ ] **AUTH-03**: User can sign out from any page
-- [ ] **AUTH-04**: User's progress and preferences are tied to their Google account and persist across devices
+- [x] **AUTH-01**: User can sign in with Google OAuth in one click with no additional fields
+- [x] **AUTH-02**: User session persists across browser refresh and new tabs
+- [x] **AUTH-03**: User can sign out from any page
+- [x] **AUTH-04**: User's progress and preferences are tied to their Google account and persist across devices
 
 ### Content
 
@@ -60,7 +60,7 @@
 - [x] **INFRA-01**: App is deployed on Vercel as a Next.js 16 App Router application
 - [x] **INFRA-02**: User data and content are stored in Neon Postgres accessed via Drizzle ORM
 - [ ] **INFRA-03**: Content seeding script reads source PDFs and populates DB with lessons, questions, and flashcards for all four topics
-- [ ] **INFRA-04**: All user-data mutations are authenticated via Better Auth server-side guards (not middleware-only)
+- [x] **INFRA-04**: All user-data mutations are authenticated via Better Auth server-side guards (not middleware-only)
 
 ---
 
@@ -106,10 +106,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 1 | Pending |
-| AUTH-02 | Phase 1 | Pending |
-| AUTH-03 | Phase 1 | Pending |
-| AUTH-04 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Complete |
+| AUTH-02 | Phase 1 | Complete |
+| AUTH-03 | Phase 1 | Complete |
+| AUTH-04 | Phase 1 | Complete |
 | CONT-01 | Phase 1 | Pending |
 | CONT-02 | Phase 1 | Pending |
 | CONT-03 | Phase 1 | Pending |
@@ -119,7 +119,7 @@
 | INFRA-01 | Phase 1 | Complete |
 | INFRA-02 | Phase 1 | Complete |
 | INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Complete |
 | VIZ-01 | Phase 2 | Pending |
 | VIZ-02 | Phase 2 | Pending |
 | VIZ-03 | Phase 2 | Pending |
