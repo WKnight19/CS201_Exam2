@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: "Completed 01-01-PLAN.md (pending: user must set DATABASE_URL and run pnpm db:push)"
-last_updated: "2026-03-25T03:41:13.254Z"
+stopped_at: "01-03-PLAN.md Task 2 checkpoint (human-verify: review raw PDF text and confirm proceed for structuring)"
+last_updated: "2026-03-25T04:08:33.074Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 4
-  completed_plans: 1
+  completed_plans: 2
 ---
 
 # Project State
@@ -62,6 +62,7 @@ Recent decisions affecting current work:
 - [Phase 01]: Node 24 required for Next.js 16 - system Node 18 incompatible; added .nvmrc pinned to 24
 - [Phase 01]: Better Auth userId is text not uuid - all FK columns use text('user_id')
 - [Phase 01]: drizzle-orm/neon-http driver chosen - stateless HTTP transport for Vercel serverless safety
+- [Phase 01]: pdf-parse@2.x uses PDFParse named class (not default function); import via namespace * as pdfParseModule; constructor takes { data: Uint8Array } in options object
 
 ### Pending Todos
 
@@ -76,6 +77,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T03:41:13.247Z
-Stopped at: Completed 01-01-PLAN.md (pending: user must set DATABASE_URL and run pnpm db:push)
+Last session: 2026-03-25T04:08:09.717Z
+Stopped at: 01-03-PLAN.md Task 2 checkpoint (human-verify: review raw PDF text and confirm proceed for structuring)
 Resume file: None
