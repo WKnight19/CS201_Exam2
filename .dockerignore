@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.gitignore
+.planning
+*.md
+.env*
+.vercel
+coverage
+.pnpm-debug.log*
