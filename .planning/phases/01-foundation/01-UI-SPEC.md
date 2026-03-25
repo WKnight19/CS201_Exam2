@@ -62,11 +62,11 @@ All sizes in px. Font: Inter (loaded via `next/font/google`).
 | Role | Size | Weight | Line Height | Usage |
 |------|------|--------|-------------|-------|
 | Body | 16px | 400 (regular) | 1.6 | Lesson concept prose; standard reading text |
-| Label | 14px | 500 (medium) | 1.4 | Tab labels, badge text, nav items, metadata |
+| Label | 14px | 400 (regular) | 1.4 | Tab labels, badge text, nav items, metadata |
 | Heading | 24px | 600 (semibold) | 1.2 | Topic page section headings (Concept, Pseudocode, C++ Code) |
-| Display | 32px | 700 (bold) | 1.1 | Topic card titles on dashboard (`/`); page-level H1 |
+| Display | 32px | 600 (semibold) | 1.1 | Topic card titles on dashboard (`/`); page-level H1 |
 
-Weights used: 400 (body) + 600 (headings). Medium (500) used only for UI labels — not for content.
+Weights used: 400 (body and labels) + 600 (headings and display). Display at 32px/600 reads as sufficiently prominent without requiring a separate bold weight.
 
 Code blocks (pseudocode and C++ sections): `font-mono` at 14px, weight 400, line-height 1.7. Uses shadcn's default monospace stack (JetBrains Mono or system mono). Wrap in a `<pre>` with `overflow-x-auto`.
 
@@ -116,7 +116,7 @@ No other elements use the accent color. Disabled tabs use `--muted-foreground` o
 
 ```
 [Nav: Logo + User avatar/Sign-in]
-[Page heading: "CS 201 — Exam 2 Topics" — Display/700]
+[Page heading: "CS 201 — Exam 2 Topics" — Display/600]
 [4-column grid on desktop, 2-column on tablet, 1-column on mobile]
   [Topic Card: Huffman Codes]
   [Topic Card: N-ary Trees]
@@ -142,7 +142,7 @@ No other elements use the accent color. Disabled tabs use `--muted-foreground` o
 
 ```
 [Nav: Logo + User avatar + Sign-out]
-[Topic heading: Display/700]
+[Topic heading: Display/600]
 [Tabs: Lesson | Visualizations | Quiz | Flashcards]
   [TabsContent: Lesson (active)]
     [Section: Concept — <h2> + prose <p>]
