@@ -1,10 +1,19 @@
-import { PDFParse } from "pdf-parse";
+import * as pdfParseModule from "pdf-parse";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// pdf-parse@2.x exports PDFParse as a named class (not a default function)
+const { PDFParse } = pdfParseModule as unknown as {
+  PDFParse: new (options: { data: Uint8Array }) => {
+    load: () => Promise<unknown>;
+    getText: () => Promise<{ text: string; pages: unknown[] }>;
+    destroy: () => Promise<void>;
+  };
+};
 
 const PDF_DIR = join(__dirname, "../CS201-Exam2");
 const OUTPUT_DIR = join(__dirname, "output/raw");
@@ -35,19 +44,15 @@ async function extractAll(): Promise<void> {
     try {
       const buffer = readFileSync(srcPath);
       const data = new Uint8Array(buffer);
-      // pdf-parse@2.x uses PDFParse class; options (including data) are passed to constructor
-      const parser = new PDFParse({ data } as Parameters<typeof PDFParse>[0]);
+      const parser = new PDFParse({ data });
       await parser.load();
       const result = await parser.getText();
 
-      // getText() returns { pages, text, total }
-      const textResult = result as unknown as { text: string; pages: unknown[] };
-      const text = textResult.text ?? String(result);
-
+      const text = result.text;
       writeFileSync(destPath, text, "utf-8");
 
       const charCount = text.length;
-      const pageCount = textResult.pages?.length ?? "?";
+      const pageCount = result.pages.length;
 
       if (charCount < 100) {
         console.warn(
