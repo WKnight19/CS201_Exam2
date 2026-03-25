@@ -16,7 +16,7 @@
 
 ### Content
 
-- [ ] **CONT-01**: User can read a structured lesson for each topic (Huffman codes, N-ary trees, Red-Black trees, B-Trees) with concept explanation, pseudocode, and C++ implementation
+- [x] **CONT-01**: User can read a structured lesson for each topic (Huffman codes, N-ary trees, Red-Black trees, B-Trees) with concept explanation, pseudocode, and C++ implementation
 - [x] **CONT-02**: Huffman lesson covers: greedy algorithm, encoding a string, decoding a bitstring
 - [x] **CONT-03**: N-ary trees lesson covers: preorder traversal, postorder traversal, level-order traversal, and traversal algorithm complexity (Big-O)
 - [x] **CONT-04**: Red-Black trees lesson covers: search algorithm, insert algorithm (with rotations and recoloring), delete algorithm (with double-black fixup)
@@ -110,7 +110,7 @@
 | AUTH-02 | Phase 1 | Complete |
 | AUTH-03 | Phase 1 | Complete |
 | AUTH-04 | Phase 1 | Complete |
-| CONT-01 | Phase 1 | Pending |
+| CONT-01 | Phase 1 | Complete |
 | CONT-02 | Phase 1 | Complete |
 | CONT-03 | Phase 1 | Complete |
 | CONT-04 | Phase 1 | Complete |

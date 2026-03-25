@@ -12,7 +12,7 @@ Four phases deliver the complete exam-prep tool. Phase 1 is the hard dependency 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - DB schema, Better Auth + Google OAuth, Neon connection, content seed, lesson pages
+- [x] **Phase 1: Foundation** - DB schema, Better Auth + Google OAuth, Neon connection, content seed, lesson pages (completed 2026-03-25)
 - [ ] **Phase 2: Visualizations** - Step-through algorithm animations for all four topics with pre-computed snapshots
 - [ ] **Phase 3: Quiz Engine & Flashcards** - All question types (MC, fill-blank, tracing, debugging, short answer) with answer recording
 - [ ] **Phase 4: Progress & Spaced Repetition** - FSRS scheduling, per-topic dashboard, recommended next action
@@ -29,13 +29,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. User can sign out from any page and be redirected to the sign-in screen
   4. User can navigate to any of the four topic lesson pages and read concept explanation, pseudocode, and C++ implementation
   5. All four topic lessons (Huffman, N-ary, RB, B-Trees) have content seeded from the PDF source material and are readable without placeholder text
-**Plans:** 3/4 plans executed
+**Plans:** 4/4 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — Project scaffold, DB schema, Drizzle + Neon connection, shadcn/ui, Vitest
 - [x] 01-02-PLAN.md — Better Auth + Google OAuth, sign-in page, middleware, requireAuth
 - [x] 01-03-PLAN.md — PDF content pipeline, structured lesson JSON, DB seed script
-- [ ] 01-04-PLAN.md — Dashboard UI, topic pages, lesson content renderer, nav bar
+- [x] 01-04-PLAN.md — Dashboard UI, topic pages, lesson content renderer, nav bar
 
 **UI hint**: yes
 
@@ -83,7 +83,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 3/4 | In Progress|  |
+| 1. Foundation | 4/4 | Complete   | 2026-03-25 |
 | 2. Visualizations | 0/TBD | Not started | - |
 | 3. Quiz Engine & Flashcards | 0/TBD | Not started | - |
 | 4. Progress & Spaced Repetition | 0/TBD | Not started | - |
