@@ -42,10 +42,8 @@ async function extractAll(): Promise<void> {
     const destPath = join(OUTPUT_DIR, dest);
 
     try {
-      const buffer = readFileSync(srcPath);
-      const data = new Uint8Array(buffer);
+      const data = readFileSync(srcPath);
       const parser = new PDFParse({ data });
-      await parser.load();
       const result = await parser.getText();
 
       const text = result.text;
